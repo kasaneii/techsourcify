@@ -1,0 +1,2845 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus Jakarta Sans:wght@700;800&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM Sans:wght@400;700&display=swap"
+    />
+	<link rel="stylesheet" href="./public/css/global.css" />
+	<style>
+            html.lenis {
+                height: auto;
+            }
+
+            .lenis.lenis-smooth {
+                scroll-behavior: auto;
+            }
+
+            .lenis.lenis-smooth [data-lenis-prevent] {
+                overscroll-behavior: contain;
+            }
+
+            .lenis.lenis-stopped {
+                overflow: hidden;
+            }
+
+            .lenis.lenis-scrolling iframe {
+                pointer-events: none;
+            }
+
+            /* Set the scrollbar width */
+            body::-webkit-scrollbar {
+                width: 4px;
+            }
+
+            /* Style the scrollbar track */
+            body::-webkit-scrollbar-track {
+                background-color: #f4b210;
+            }
+
+            /* Style the scrollbar handle */
+			body::-webkit-scrollbar-thumb {
+			  background-color: #1f2850;    /* color of the scroll thumb */
+			  border-radius: 20px;       /* roundness of the scroll thumb */
+			  border: 3px solid #1f2850;  /* creates padding around scroll thumb */
+			}
+	</style>
+	  <script src="https://cdn.tailwindcss.com"></script>
+	  <script>
+		tailwind.config = {
+	  theme: {
+		extend: {
+		  colors: {
+			white: "#fff",
+			tomato: {
+			  "100": "#ef4c43",
+			  "200": "rgba(239, 76, 67, 0.2)",
+			},
+			goldenrod: {
+			  "100": "#f4b210",
+			  "200": "rgba(244, 178, 16, 0.3)",
+			  "300": "rgba(244, 178, 16, 0.2)",
+			},
+			aliceblue: "#f2f6ff",
+			gray: "rgba(255, 255, 255, 0.7)",
+			whitesmoke: {
+			  "100": "#f7f7f7",
+			  "200": "#f6f6f6",
+			},
+			darkslateblue: {
+			  "100": "#1f2850",
+			  "200": "rgba(31, 40, 80, 0.1)",
+			},
+			gainsboro: "#e4e4e4",
+			darkgray: "#9a9a9a",
+			silver: "#b9b9b9",
+		  },
+		  spacing: {},
+		  fontFamily: {
+			"plus-jakarta-sans": "'Plus Jakarta Sans'",
+			"dm-sans": "'DM Sans'",
+		  },
+		  borderRadius: {
+			"81xl": "100px",
+			"31xl": "50px",
+			"3xs": "10px",
+			"8xs": "5px",
+			"481xl": "500px",
+			xl: "20px",
+			mini: "15px",
+		  },
+		},
+		fontSize: {
+		  "5xl": "24px",
+		  xl: "20px",
+		  sm: "14px",
+		  base: "16px",
+		  xs: "12px",
+		  "13xl": "32px",
+		  "45xl": "64px",
+		  "25xl": "44px",
+		  "2xs": "11px",
+		  lg: "18px",
+		  "11xl": "30px",
+		  "29xl": "48px",
+		  smi: "13px",
+		  "31xl": "50px",
+		  "9xl": "28px",
+		  "17xl": "36px",
+		  "41xl": "60px",
+		  inherit: "inherit",
+		},
+		screens: {
+		  lg: {
+			max: "1200px",
+		  },
+		  md: {
+			max: "960px",
+		  },
+		  sm: {
+			max: "440px",
+		  },
+		  mq350small: {
+			raw: "screen and (max-width: 350px)",
+		  },
+		  mq640: {
+			raw: "screen and (max-width: 640px) and (min-width: 441px)",
+		  },
+		  mq768: {
+			raw: "screen and (max-width: 768px) and (min-width: 641px)",
+		  },
+      mq1366: {
+      raw: "screen and (max-width: 1366px) and (min-width: 1201px)",
+      },
+      mq1024: {
+      raw: "screen and (max-width: 1024px) and (min-width: 961px)",
+      },
+      mq375: {
+      raw: "screen and (max-width: 375px) and (min-width: 351px)",
+      },
+		},
+	  },
+	  corePlugins: {
+		preflight: false,
+	  }
+	}
+	</script>	
+  </head>
+  <body>
+    <div class="relative w-full flex flex-col items-center justify-start">
+      <!-- Navbar -->
+      <div class="sidenav absolute bg-transparent top-0 left-0 w-full justify-end z-20 opacity-0 hidden transition ease-in-out duration-300">
+        <div class="relative bg-white w-[40%] mq640:w-[50%] sm:w-full h-screen hidden md:flex flex-col items-center px-[32px] sm:px-[16px] overflow-hidden">
+          <div class="w-full flex justify-between px-[32px] sm:px-[16px] py-[30px]">
+            <img
+              class="w-[200px] mq640:w-[150px] object-contain sm:w-[120px]"
+              alt=""
+              src="public/assets/techsourcify_logo.png"
+            />
+            <button
+              id="closeBtn"
+              class="rounded-81xl bg-aliceblue hover:bg-[#E5EDFF] flex flex-col items-center justify-center w-[40px] h-[40px] py-3.5 px-3.5"
+            >
+              <img 
+                class="object-contain w-full h-full"
+                alt=""
+                src="public/assets/closeIcon.png"
+              />
+            </button>
+          </div>
+          <div class="flex flex-col justify-between w-full h-full px-[32px] sm:px-[16px] font-plus-jakarta-sans text-center items-center">
+            <div class="w-full flex flex-col gap-[30px] items-center pt-[30px]">
+              <div class="w-full flex flex-col gap-[20px] items-center">
+                <a href="./index.html"
+                    class="cursor-pointer [border:none] py-2.5 px-[30px] bg-white hover:bg-goldenrod-100 hover:text-white text-darkslateblue-100 rounded-xl flex flex-col items-center justify-center no-underline"
+                    id="home"
+                  >
+                    <b
+                      class="self-stretch relative text-base capitalize font-plus-jakarta-sans text-center"
+                      >home</b
+                    >
+                  </a>
+                  <a href="./our-services.html"
+                    class="cursor-pointer hover:bg-goldenrod-100 hover:text-white text-darkslateblue-100 rounded-xl flex flex-col items-center justify-center py-2.5 px-[30px] no-underline"
+                  >
+                    <b class="self-stretch relative capitalize">our services</b>
+                  </a>
+                  <a href="./index.html#why-ITO"
+                    class="cursor-pointer hover:bg-goldenrod-100 hover:text-white text-darkslateblue-100 rounded-xl flex flex-col items-center justify-center py-2.5 px-[30px] no-underline"
+                  >
+                    <b class="self-stretch relative capitalize">why ITO?</b>
+                  </a>
+                  <a href="./index.html#how-it-works"
+                    class="cursor-pointer hover:bg-goldenrod-100 hover:text-white text-darkslateblue-100 rounded-xl flex flex-col items-center justify-center py-2.5 px-[30px] no-underline"
+                  >
+                    <b class="self-stretch relative capitalize">how it works</b>
+                  </a>
+              </div>
+              <a href="./contact-us.html"
+                  class="cursor-pointer rounded-31xl hover:bg-[#E93C32] bg-tomato-100 text-white w-[187px] overflow-hidden shrink-0 flex flex-row items-center justify-center py-2.5 px-[30px] box-border gap-[10px] no-underline"
+              >
+                <b class="relative capitalize">contact us</b>
+                <div
+                  class="rounded-31xl bg-gray w-[30px] h-[30px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-[7px] box-border"
+                >
+                  <img
+                    class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
+                    alt=""
+                    src="public/assets/telephone.svg"
+                  />
+                </div>
+              </a>
+            </div>
+            <div class="w-full flex justify-between z-10 py-[30px]">
+              <a href="#" class="no-underline text-base capitalize text-darkslateblue-100 rounded-81xl bg-aliceblue hover:bg-[#E5EDFF] font-plus-jakarta-sans flex flex-col items-center justify-center py-2.5 px-5 mq350small:text-sm">Facebook</a>
+              <a href="#" class="no-underline text-base capitalize text-darkslateblue-100 rounded-81xl bg-aliceblue hover:bg-[#E5EDFF] font-plus-jakarta-sans flex flex-col items-center justify-center py-2.5 px-5 mq350small:text-sm">LinkedIn</a>
+            </div>
+          </div>
+          <img
+            class="absolute bottom-0 left-0 h-[50%] shrink-0 object-cover z-0"
+            alt=""
+            src="public/assets/heroBannerLeft@2x.png"
+          />
+        </div>
+      </div>
+      <header
+        id="navbar"
+        class="self-stretch bg-white sticky top-0 z-50 flex flex-row items-center justify-center py-[30px] sm:py-4 px-8 sm:px-4 text-left text-base text-white font-plus-jakarta-sans"
+      >
+        <div
+          class="flex-1 flex flex-row items-center justify-between max-w-[1200px]"
+        >
+          <a href="index.html">
+            <img
+              class="max-h-full w-[200px] object-cover mq350small:w-[120px]"
+              alt=""
+              src="public/assets/sample_logo@2x.png"
+            />
+          </a>
+
+          <div class="flex flex-row items-center justify-center gap-[30px]">
+            <nav
+              class="m-0 overflow-hidden flex flex-row items-center justify-center py-2.5 pr-0 pl-2.5 gap-[10px] text-center text-base font-plus-jakarta-sans"
+            >
+              <a href="./index.html"
+                class="cursor-pointer [border:none] py-2.5 px-[30px] bg-white hover:bg-goldenrod-100 hover:text-white text-darkslateblue-100 rounded-xl flex flex-col items-center justify-center md:hidden no-underline"
+                id="home"
+              >
+                <b
+                  class="self-stretch relative text-base capitalize font-plus-jakarta-sans text-center"
+                  >home</b
+                >
+              </a>
+              <a href="./our-services.html"
+                class="cursor-pointer hover:bg-goldenrod-100 hover:text-white text-darkslateblue-100 rounded-xl flex flex-col items-center justify-center py-2.5 px-5 md:hidden no-underline"
+              >
+                <b class="self-stretch relative capitalize">our services</b>
+              </a>
+              <a href="#why-ITO"
+                class="cursor-pointer hover:bg-goldenrod-100 hover:text-white text-darkslateblue-100 rounded-xl flex flex-col items-center justify-center py-2.5 px-5 md:hidden no-underline"
+              >
+                <b class="self-stretch relative capitalize">why ITO?</b>
+              </a>
+              <a href="#how-it-works"
+                class="cursor-pointer hover:bg-goldenrod-100 hover:text-white text-darkslateblue-100 rounded-xl flex flex-col items-center justify-center py-2.5 px-5 md:hidden no-underline"
+              >
+                <b class="self-stretch relative capitalize">how it works</b>
+              </a>
+              <button
+                id="menuBtn"
+                class="rounded-81xl bg-aliceblue hover:bg-[#E5EDFF] text-darkslateblue-100 font-plus-jakarta-sans flex-col items-center justify-center py-2.5 px-5 hidden md:flex"
+              >
+                <b class="text-base self-stretch relative capitalize mq350small:text-sm"
+                  >menu</b
+                >
+              </button>
+            </nav>
+            <a href="./contact-us.html"
+              class="cursor-pointer rounded-31xl hover:bg-[#E93C32] bg-tomato-100 text-white w-[187px] overflow-hidden shrink-0 flex flex-row items-center justify-center py-2.5 px-[30px] box-border gap-[10px] sm:hidden no-underline"
+            >
+              <b class="relative capitalize">contact us</b>
+              <div
+                class="rounded-31xl bg-gray w-[30px] h-[30px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-[7px] box-border"
+              >
+                <img
+                  class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
+                  alt=""
+                  src="public/assets/telephone.svg"
+                />
+              </div>
+            </a>
+          </div>
+        </div>
+      </header>
+      <!-- Hero section -->
+      <section
+        id="hero-section"
+        class="self-stretch bg-white overflow-hidden flex flex-col items-center justify-start py-[100px] px-8 relative gap-[120px] text-center text-[72px] text-darkslateblue-100 font-plus-jakarta-sans sm:pt-[50px] sm:pb-[50px] sm:box-border sm:px-4"
+      >
+        <img
+          class="self-stretch absolute my-0 mx-[!important] bottom-[0px] left-[0px] max-w-full overflow-hidden h-auto shrink-0 object-cover w-3/5 z-[0]"
+          alt=""
+          src="public/assets/heroBannerLeft@2x.png"
+        />
+        <div
+          class="w-full flex flex-col items-center justify-center gap-[120px] max-w-[1200px] z-[1] mq350small:gap-[80px]"
+        >
+          <div
+            class="self-stretch flex flex-col items-center justify-center gap-[20px]"
+          >
+            <div class="self-stretch flex flex-col items-center justify-center">
+              <h1
+                class="mq1024:flex md:flex flex-col justify-center items-center text-inherit leading-[100%] capitalize font-extrabold font-inherit sm:text-13xl mq350small:text-xl mq640:text-25xl"
+              >
+                <span>We need to </span>
+                <span class="text-goldenrod-100 relative">
+                  <span>make innovation</span>
+                  <div class="make-innovation-line -z-10 absolute -top-12 -right-16 w-[720px] mq1024:-top-14 md:-top-14 md:-right-16 mq640:w-[450px] mq640:-top-8 mq640:-right-10 sm:w-[320px] sm:-right-8 sm:-top-6 mq350small:-top-4 mq350small:-right-6 mq350small:w-[210px]">
+                    <dotlottie-player src="public/assets/svg-lines/make-innovation-line.json" speed="5" autoplay></dotlottie-player>
+                  </div>
+                </span>
+                <span>
+                  within reach for everyone, not just the privileged few</span
+                >
+              </h1>
+            </div>
+            <div
+              class="w-full flex flex-col items-center justify-center max-w-[1000px] text-5xl font-dm-sans"
+            >
+              <h3
+                class="m-0 self-stretch relative text-inherit leading-[170%] font-normal font-inherit sm:text-base mq350small:text-xs mq640:text-xl"
+              >
+                You can rely on ITO.PH Direct Plus to provide reliable and
+                excellent IT outsourcing services tailored to your company's
+                requirements.
+              </h3>
+            </div>
+            <a href="./our-services.html"
+              class="cursor-pointer [border:none] py-2.5 px-[30px] hover:bg-[#E93C32] bg-tomato-100 rounded-31xl overflow-hidden flex flex-row items-center justify-center gap-[10px] sm:py-2.5 sm:px-5 sm:box-border mq350small:py-[7px] mq350small:px-5 mq350small:box-border mq640:pl-[25px] mq640:pr-[25px] mq640:box-border no-underline"
+            >
+              <b
+                class="relative text-base capitalize font-plus-jakarta-sans text-white text-left sm:text-sm mq350small:text-xs mq640:text-sm"
+                >Learn more</b
+              >
+              <img
+                class="relative w-[35px] h-[35px] overflow-hidden shrink-0 sm:w-5 sm:h-5 mq350small:w-5 mq350small:h-[25px] mq640:w-[25px] mq640:h-[25px]"
+                alt=""
+                src="public/assets/chevronRight.svg"
+              />
+            </a>
+          </div>
+          <div
+            class="self-stretch h-[700px] flex flex-col items-center justify-start relative gap-[50px] md:h-[500px] sm:h-[180px] mq350small:h-[150px] mq640:h-[300px] mq768:h-[400px]"
+          >
+            <img
+              class="self-stretch flex-1 rounded-xl max-w-full overflow-hidden max-h-full object-cover"
+              alt=""
+              src="public/assets/heroImageBG@2x.png"
+            />
+            <div class="hero-line absolute -top-20 w-[1400px] lg:w-[1300px] mq1024:w-[1000px] mq1024:top-0 md:hidden">
+              <lottie-interactivity-scroll
+                class="w-full"
+                animation-url="public/assets/svg-lines/hero-line.json"
+                visibility="[0.3, 0.5]"
+                frames="[0, 18]"
+                tag-name="hero-line"
+              ></lottie-interactivity-scroll>
+            </div>
+            <img
+              class="self-stretch absolute my-0 mx-[!important] w-[95%] right-[37px] bottom-[0px] left-[37px] max-w-full overflow-hidden h-auto shrink-0 object-cover z-[1] mq640:right-[20px] mq640:left-[20px] sm:w-[90%] sm:right-[25px] sm:left-[25px] mq350small:right-[20px] mq350small:left-[20px]"
+              alt=""
+              src="public/assets/heroTopImage@2x.png"
+            />
+          </div>
+        </div>
+      </section>
+      <!-- What we do pt.1 -->
+      <section
+        class="self-stretch bg-darkslateblue-100 overflow-hidden flex flex-col items-center justify-start text-center text-sm text-goldenrod-100 font-dm-sans"
+      >
+        <div
+          class="self-stretch overflow-hidden flex flex-col items-center justify-start py-[100px] px-8 relative gap-[10px] sm:pt-[50px] sm:pb-[50px] sm:box-border sm:px-4"
+        >
+          <img
+            class="self-stretch absolute my-0 mx-[!important] w-[calc(100%_+_325px)] top-[0px] right-[-325px] left-[0px] max-w-full overflow-hidden h-[597px] shrink-0 object-cover z-[0]"
+            alt=""
+            src="public/assets/waveDotLines2@2x.png"
+          />
+
+          <div
+            class="w-full overflow-hidden flex flex-col items-start justify-center gap-[30px] max-w-[1200px] z-[1]"
+          >
+            <div
+              class="self-stretch overflow-hidden flex flex-col items-start justify-start gap-[20px] relative"
+            >
+              <div class="deliver-services-line absolute left-16 top-0 mq640:left-6 mq640:top-2 mq640:w-[450px] sm:w-[300px] sm:left-8 sm:top-4 mq350small:w-[200px] mq350small:left-4 mq350small:top-5">
+                <lottie-interactivity-scroll
+                  class="w-full"
+                  animation-url="public/assets/svg-lines/deliver-services-line.json"
+                  visibility="[0, 0.5]"
+                  frames="[0, 60]"
+				  speed="5"
+                  tag-name="deliver-services-line"
+                ></lottie-interactivity-scroll>
+              </div>
+              <b
+                class="relative leading-[100%] uppercase sm:text-2xs mq350small:text-xs"
+                >What We Do</b
+              >
+              <h1
+                class="m-0 self-stretch relative text-45xl leading-[100%] capitalize font-extrabold font-plus-jakarta-sans text-left text-white sm:text-13xl mq350small:text-xl mq640:text-25xl"
+              >
+                <p class="m-0">
+                  <span class="text-white">We </span>
+                  <span class="text-goldenrod-100">deliver services</span>
+                  <span> that facilitate connectivity and progress on </span>
+                </p>
+                <p class="m-0">a global scale</p>
+              </h1>
+            </div>
+            <div
+              class="w-full flex flex-col items-start justify-center max-w-[978px] text-left text-[36px] text-white"
+            >
+              <h1
+                class="m-0 self-stretch relative text-inherit font-normal font-inherit sm:text-base mq350small:text-xs mq640:text-xl"
+              >
+                We bring our experience, expertise, and network to connect SME
+                and start up organizations with highly skilled IT professionals
+                globally.
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class="parallax-img bg-[url('public/assets/officeImg.jpg')] w-full h-[700px] bg-cover bg-fixed md:bg-center sm:h-[300px] mq350small:h-[250px] mq640:h-[500px]"></div>
+        <div
+          class="self-stretch overflow-hidden flex flex-col items-center justify-start py-[100px] px-8 bg-[url('public/assets/frame-143@3x.png')] bg-cover bg-no-repeat bg-[top] text-left text-13xl text-white sm:h-auto sm:pt-[50px] sm:pb-[50px] sm:box-border sm:px-4"
+        >
+          <div
+            class="w-full overflow-hidden flex flex-col items-center justify-center gap-[50px] max-w-[1200px] sm:h-auto"
+          >
+            <h1
+              class="m-0 self-stretch relative text-inherit font-normal font-inherit sm:text-base mq350small:text-xs mq640:text-xl"
+            >
+              Our dedicated team is committed to delivering exceptional
+              recruitment solutions ensuring organizations find the right IT
+              talents whether it’s a Software engineer, Network Admin, Database
+              Admin, Programmer, Full-Stack Developer, IT Security Analyst and
+              other IT specialized niches or fields.
+            </h1>
+            <div
+              class="self-stretch flex flex-row flex-wrap items-center justify-center gap-[30px] text-center text-xl font-plus-jakarta-sans relative"
+            >
+              <div class="absolute top-8 left-0 w-full mq1024:hidden md:hidden">
+                <lottie-interactivity-scroll
+                  class="w-full"
+                  animation-url="public/assets/svg-lines/what-we-do-line.json"
+                  visibility="[0.2, 0.5]"
+                  frames="[0, 30]"
+                  tag-name="what-we-do-line"
+                ></lottie-interactivity-scroll>
+              </div>
+              <div
+                class="flex-1 rounded-3xs overflow-hidden flex flex-col items-center justify-center gap-[20px] min-w-[320px] max-w-[380px] sm:min-w-[200px] sm:max-w-[320px]"
+              >
+                <div
+                  class="rounded-8xs overflow-hidden flex flex-col items-center justify-center p-2.5"
+                >
+                  <img
+                    class="relative w-[70px] h-[70px] overflow-hidden shrink-0 sm:w-[70px] sm:h-[70px] mq350small:w-[50px] mq350small:h-[50px]"
+                    alt=""
+                    src="public/assets/ITSolutions.svg"
+                  />
+                </div>
+                <div
+                  class="self-stretch relative font-extrabold mq350small:text-sm"
+                >
+                  Global IT Talent Solutions
+                </div>
+                <div
+                  class="self-stretch relative text-base font-dm-sans mq350small:text-xs"
+                >
+                  Connect SMEs and startups with top IT professionals worldwide
+                </div>
+              </div>
+              <div
+                class="flex-1 rounded-3xs overflow-hidden flex flex-col items-center justify-center gap-[20px] min-w-[320px] max-w-[380px] sm:min-w-[200px] sm:max-w-[320px]"
+              >
+                <div
+                  class="rounded-8xs w-[90px] h-[90px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-2.5 box-border"
+                >
+                  <img
+                    class="relative w-[70px] h-[70px] object-cover mq350small:w-[50px] mq350small:h-[50px]"
+                    alt=""
+                    src="public/assets/recruitment@2x.png"
+                  />
+                </div>
+                <div
+                  class="self-stretch relative font-extrabold mq350small:text-sm"
+                >
+                  Fair IT Recruitment Partnerships
+                </div>
+                <div
+                  class="self-stretch relative text-base font-dm-sans mq350small:text-xs"
+                >
+                  Transparent hiring practices with Oh! Jobs collaboration
+                </div>
+              </div>
+              <div
+                class="flex-1 rounded-3xs overflow-hidden flex flex-col items-center justify-center gap-[20px] min-w-[320px] max-w-[380px] sm:min-w-[200px] sm:max-w-[320px]"
+              >
+                <div
+                  class="rounded-8xs w-[90px] h-[90px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-2.5 box-border"
+                >
+                  <img
+                    class="relative w-[70px] h-[70px] overflow-hidden shrink-0 mq350small:w-[50px] mq350small:h-[50px]"
+                    alt=""
+                    src="public/assets/HRSoftware.svg"
+                  />
+                </div>
+                <div
+                  class="self-stretch relative font-extrabold mq350small:text-sm"
+                >
+                  Hi! Molly HR Software for Growth
+                </div>
+                <div
+                  class="self-stretch relative text-base font-dm-sans mq350small:text-xs"
+                >
+                  Enhance HR management and ensure organizational success
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- What we do pt.2 -->
+      <section
+        class="overflow-hidden self-stretch bg-white flex flex-col items-center justify-start text-left text-base text-darkslateblue-100 font-dm-sans"
+      >
+        <div
+          class="w-full flex flex-col items-center justify-start py-[100px] px-8 box-border max-w-[1200px] sm:pt-[50px] sm:pb-[50px] sm:box-border sm:px-4 sm:overflow-hidden relative"
+        >
+          <div class="our-hiring-line absolute top-32 -right-64 lg:hidden">
+            <lottie-interactivity-scroll
+              class="w-full"
+              animation-url="public/assets/svg-lines/our-hiring-line.json"
+              visibility="[0.2, 0.5]"
+              frames="[0, 30]"
+              tag-name="our-hiring-line"
+            ></lottie-interactivity-scroll>
+          </div>
+          <div class="our-work-line absolute bottom-12 -left-[370px] lg:hidden">
+            <lottie-interactivity-scroll
+              class="w-full"
+              animation-url="public/assets/svg-lines/our-work-line.json"
+              visibility="[0.2, 0.5]"
+              frames="[0, 30]"
+              tag-name="our-work-line"
+            ></lottie-interactivity-scroll>
+          </div>
+          <div
+            class="w-full flex flex-col items-center justify-start max-w-[1200px]"
+          >
+            <div
+              class="self-stretch flex flex-row items-center justify-center gap-[50px] sm:flex-col sm:gap-[0px] mq640:flex-col"
+            >
+              <div
+                class="flex-1 flex flex-col items-center justify-center relative gap-[10px] sm:flex-[unset] sm:self-stretch mq640:flex-[unset] mq640:self-stretch"
+              >
+                <img
+                  class="absolute my-0 mx-[!important] top-[calc(50%_-_350px)] left-[calc(50%_-_461.8px)] w-[905.3px] h-[817.5px] z-[0] mq350small:w-[905px] mq350small:h-[600px]"
+                  alt=""
+                  src="public/assets/colorBG.svg"
+                />
+
+                <img
+                  class="self-stretch relative max-w-full overflow-hidden h-[437px] shrink-0 z-[1] mq350small:h-[300px]"
+                  alt=""
+                  src="public/assets/hiringGraphics.svg"
+                />
+              </div>
+              <div
+                class="flex-1 overflow-hidden flex flex-col items-start justify-center gap-[20px] max-w-[575px] sm:flex-[unset] sm:self-stretch mq640:flex-[unset] mq640:self-stretch"
+              >
+                <h1
+                  class="m-0 self-stretch relative text-13xl capitalize font-extrabold font-plus-jakarta-sans sm:text-[28px] sm:text-left mq350small:text-xl"
+                >
+                  <span>Our </span>
+                  <span class="text-goldenrod-100">hiring</span>
+                  <span>
+                    practices and processes adhere to principles of fairness,
+                    transparency, and honesty</span
+                  >
+                </h1>
+                <div
+                  class="self-stretch relative leading-[170%] sm:text-base sm:text-left mq350small:text-xs"
+                >
+                  Through our partnerships with various technologies, we've
+                  demonstrated that the recruitment process doesn't need to be
+                  overly challenging.
+                </div>
+                <div
+                  class="self-stretch overflow-hidden flex flex-col items-start justify-center sm:items-start sm:justify-center"
+                >
+                  <div
+                    class="self-stretch overflow-hidden flex flex-row items-center justify-start sm:items-start sm:justify-center"
+                  >
+                    <div
+                      class="overflow-hidden flex flex-col items-center justify-center p-2.5"
+                    >
+                      <img
+                        class="relative w-[30px] h-[30px] overflow-hidden shrink-0 mq350small:w-[15px] mq350small:h-5"
+                        alt=""
+                        src="public/assets/checkmark.svg"
+                      />
+                    </div>
+                    <div
+                      class="flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5"
+                    >
+                      <div
+                        class="self-stretch relative leading-[170%] mq350small:text-xs"
+                      >
+                        Fair, transparent, and honest hiring.
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="self-stretch overflow-hidden flex flex-row items-center justify-start sm:items-center sm:justify-center"
+                  >
+                    <div
+                      class="overflow-hidden flex flex-col items-center justify-center p-2.5"
+                    >
+                      <img
+                        class="relative w-[30px] h-[30px] overflow-hidden shrink-0 mq350small:w-[15px] mq350small:h-5"
+                        alt=""
+                        src="public/assets/checkmark.svg"
+                      />
+                    </div>
+                    <div
+                      class="flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5"
+                    >
+                      <div
+                        class="self-stretch relative leading-[170%] mq350small:text-xs"
+                      >
+                        Tech partnerships for efficient recruitment.
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="self-stretch overflow-hidden flex flex-row items-center justify-start sm:items-start sm:justify-center"
+                  >
+                    <div
+                      class="overflow-hidden flex flex-col items-center justify-center p-2.5"
+                    >
+                      <img
+                        class="relative w-[30px] h-[30px] overflow-hidden shrink-0 mq350small:w-[15px] mq350small:h-5"
+                        alt=""
+                        src="public/assets/checkmark.svg"
+                      />
+                    </div>
+                    <div
+                      class="flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5"
+                    >
+                      <div
+                        class="self-stretch relative leading-[170%] mq350small:text-xs"
+                      >
+                        Seek the best candidates.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="self-stretch relative leading-[170%] mq350small:text-xs"
+                >
+                  Our collaboration with Oh! Jobs, one of the leading job
+                  portals in Asia, have proved success in actively seeking
+                  technological services to enhance our operations to find the
+                  best candidate for an origination needs.
+                </div>
+              </div>
+            </div>
+            <div
+              class="w-full overflow-hidden flex flex-col items-center justify-center py-[100px] px-0 box-border max-w-[1200px] sm:pt-[50px] sm:pb-[50px] sm:box-border"
+            >
+              <div
+                class="self-stretch relative box-border h-[0.5px] border-t-[0.5px] border-solid border-darkgray"
+              ></div>
+            </div>
+            <div
+              class="self-stretch flex flex-row items-center justify-center gap-[50px] sm:flex-col sm:gap-[0px] mq640:flex-col"
+            >
+              <div
+                class="flex-1 overflow-hidden flex flex-col items-start justify-center gap-[20px] max-w-[575px] sm:flex-[unset] sm:self-stretch mq640:flex-[unset] mq640:self-stretch mq640:order-2 sm:order-2"
+              >
+                <h1
+                  class="m-0 self-stretch relative text-13xl capitalize font-extrabold font-plus-jakarta-sans mq350small:text-xl"
+                >
+                  <span>Our </span>
+                  <span class="text-goldenrod-100">work</span>
+                  <span> doesn’t stop there</span>
+                </h1>
+                <div
+                  class="self-stretch relative leading-[170%] mq350small:text-xs"
+                >
+                  With Hi! Molly, we ensure that you monitor and oversee
+                  employee performance and development using this effective HR
+                  software system designed to meet all your HR requirements.
+                </div>
+                <div
+                  class="self-stretch overflow-hidden flex flex-col items-start justify-center"
+                >
+                  <div
+                    class="self-stretch overflow-hidden flex flex-row items-center justify-start"
+                  >
+                    <div
+                      class="overflow-hidden flex flex-col items-center justify-center p-2.5"
+                    >
+                      <img
+                        class="relative w-[30px] h-[30px] overflow-hidden shrink-0 mq350small:w-[15px] mq350small:h-5"
+                        alt=""
+                        src="public/assets/checkmark.svg"
+                      />
+                    </div>
+                    <div
+                      class="flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5"
+                    >
+                      <div
+                        class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+                      >
+                        monitor and oversee employee performance.
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="self-stretch overflow-hidden flex flex-row items-center justify-start"
+                  >
+                    <div
+                      class="overflow-hidden flex flex-col items-center justify-center p-2.5"
+                    >
+                      <img
+                        class="relative w-[30px] h-[30px] overflow-hidden shrink-0 mq350small:w-[15px] mq350small:h-5"
+                        alt=""
+                        src="public/assets/checkmark.svg"
+                      />
+                    </div>
+                    <div
+                      class="flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5"
+                    >
+                      <div
+                        class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+                      >
+                        meeting HR needs effectively.
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="self-stretch overflow-hidden flex flex-row items-center justify-start"
+                  >
+                    <div
+                      class="overflow-hidden flex flex-col items-center justify-center p-2.5"
+                    >
+                      <img
+                        class="relative w-[30px] h-[30px] overflow-hidden shrink-0 mq350small:w-[15px] mq350small:h-5"
+                        alt=""
+                        src="public/assets/checkmark.svg"
+                      />
+                    </div>
+                    <div
+                      class="flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5"
+                    >
+                      <div
+                        class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+                      >
+                        commitment to organizational growth.
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="self-stretch overflow-hidden flex flex-row items-center justify-start"
+                  >
+                    <div
+                      class="overflow-hidden flex flex-col items-center justify-center p-2.5"
+                    >
+                      <img
+                        class="relative w-[30px] h-[30px] overflow-hidden shrink-0 mq350small:w-[15px] mq350small:h-5"
+                        alt=""
+                        src="public/assets/checkmark.svg"
+                      />
+                    </div>
+                    <div
+                      class="flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5"
+                    >
+                      <div
+                        class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+                      >
+                        success as the top priority.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="self-stretch relative leading-[170%] mq350small:text-xs"
+                >
+                  We will go beyond to help your organization grow. Your success
+                  is our priority.
+                </div>
+              </div>
+              <div
+                class="flex-1 flex flex-col items-center justify-center relative gap-[10px] sm:flex-[unset] sm:self-stretch mq640:flex-[unset] mq640:self-stretch mq640:order-1 sm:order-1"
+              >
+                <img
+                  class="absolute my-0 mx-[!important] top-[calc(50%_-_444.8px)] left-[calc(50%_-_461.8px)] w-[905.3px] h-[889.4px] z-[0]"
+                  alt=""
+                  src="public/assets/colorBG.svg"
+                />
+
+                <img
+                  class="self-stretch relative max-w-full overflow-hidden h-[487px] shrink-0 z-[1] mq350small:h-[300px]"
+                  alt=""
+                  src="public/assets/workGraphics.svg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="self-stretch bg-darkslateblue-100 overflow-hidden flex flex-col items-center justify-start text-45xl text-white font-plus-jakarta-sans"
+        >
+          <div
+            class="self-stretch flex flex-col items-center justify-center py-[100px] px-8 bg-[url('public/assets/frame-5@3x.png')] bg-cover bg-no-repeat bg-[top] sm:pt-[50px] sm:pb-[50px] sm:box-border sm:px-4"
+          >
+            <div
+              class="relative w-full flex flex-col items-start justify-center gap-[30px] max-w-[1200px]"
+            >
+              <div class="together-line absolute -top-6 -left-8 mq640:w-[250px] sm:w-[180px] sm:-left-5 sm:-top-4 mq350small:w-[120px] mq350small:-left-4 mq350small:-top-2">
+                <lottie-interactivity-scroll
+                  class="w-full"
+                  animation-url="public/assets/svg-lines/together-line.json"
+                  visibility="[0.2, 0.6]"
+                  frames="[0, 60]"
+                  tag-name="together-line"
+                ></lottie-interactivity-scroll>
+              </div>
+              <h1
+                class="m-0 self-stretch relative text-inherit capitalize font-extrabold font-inherit sm:text-13xl mq350small:text-xl mq640:text-25xl"
+              >
+                <p class="m-0">
+                  <span class="text-goldenrod-100">Together</span>
+                  <span
+                    >, let's navigate the complexities of the digital world
+                  </span>
+                </p>
+                <p class="m-0">and achieve your goals</p>
+              </h1>
+              <h1
+                class="m-0 self-stretch relative text-[34px] font-normal font-dm-sans sm:text-base mq350small:text-xs mq640:text-xl"
+              >
+                Through our experiences, we will guide you through the
+                challenges and opportunities in this dynamic and fast-paced
+                environment all while working collaboratively to ensure that
+                your organization will stay competitive.
+              </h1>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Why work with us -->
+      <section
+        id="why-ITO"
+        class="self-stretch bg-white overflow-hidden flex flex-col items-center justify-start py-[100px] px-8 text-center text-sm text-darkslateblue-100 font-dm-sans sm:pt-[50px] sm:pb-[50px] sm:box-border sm:px-4"
+      >
+        <div
+          class="w-full flex flex-col items-center justify-start gap-[70px] max-w-[1200px]"
+        >
+          <div
+            class="self-stretch overflow-hidden flex flex-col items-center justify-start gap-[20px]"
+          >
+            <b
+              class="relative leading-[100%] uppercase text-goldenrod-100 sm:text-2xs mq350small:text-xs"
+              >Why work with us</b
+            >
+            <h1
+              class="m-0 self-stretch text-31xl capitalize font-extrabold font-plus-jakarta-sans sm:text-13xl mq350small:text-xl mq640:text-25xl"
+            >
+              <span>We take </span>
+              <span class="text-goldenrod-100 relative">
+                <span class="z-10 relative">pride</span>
+                <div class="pride-line absolute z-0 w-[200px] -top-4 -left-9 mq640:w-[180px] sm:w-[130px] sm:-left-6 sm:-top-2 mq350small:w-[80px] mq350small:-left-3 mq350small:-top-1">
+                  <lottie-interactivity-scroll
+                    class="w-full z-0"
+                    animation-url="public/assets/svg-lines/pride-line.json"
+                    visibility="[0.2, 0.6]"
+                    frames="[0, 60]"
+                    tag-name="pride-line"
+                  ></lottie-interactivity-scroll>
+                </div>
+              </span>
+              <span>
+                in what sets us apart and makes us the ideal choice for your
+                needs</span
+              >
+            </h1>
+            <div
+              class="w-full flex flex-col items-center justify-center max-w-[890px] text-5xl"
+            >
+              <h3
+                class="m-0 self-stretch relative text-inherit leading-[170%] font-normal font-inherit sm:text-base mq350small:text-xs mq640:text-xl"
+              >
+                We understand that choosing a partner is a significant decision,
+                and we're here to tell you why working with us is the right
+                choice.
+              </h3>
+            </div>
+          </div>
+          <div
+            class="self-stretch flex flex-row flex-wrap items-start justify-center relative gap-[30px] text-left text-5xl font-plus-jakarta-sans"
+          >
+            <img
+              class="absolute my-0 mx-[!important] top-[calc(50%_-_281px)] left-[-360px] w-[510px] h-[562px] object-cover z-[0]"
+              alt=""
+              src="public/assets/techLinesBG@2x.png"
+            />
+
+            <img
+              class="absolute my-0 mx-[!important] top-[calc(50%_-_281px)] right-[-360px] w-[510px] h-[562px] object-cover z-[1]"
+              alt=""
+              src="public/assets/techLinesRight@2x.png"
+            />
+
+            <div
+              class="flex-1 rounded-3xs bg-whitesmoke-200 h-[350px] overflow-hidden flex flex-col items-start justify-center p-[50px] box-border relative gap-[20px] min-w-[400px] max-w-[585px] z-[2] lg:h-[500px] lg:items-center lg:justify-start md:h-[550px] sm:h-[450px] sm:min-w-[256px] sm:max-w-[356px] mq350small:h-[330px] mq350small:p-5 mq350small:box-border"
+            >
+              <div
+                class="my-0 mx-[!important] absolute right-[0px] bottom-[0px] rounded-tl-481xl rounded-tr-none rounded-b-none bg-tomato-100 w-[180px] h-[180px] overflow-hidden shrink-0 flex flex-col items-center justify-center pt-[30px] pb-2.5 pr-2.5 pl-[50px] box-border z-[0] lg:pl-2.5 lg:pt-2.5 lg:box-border lg:static lg:rounded-[500px] sm:w-[130px] sm:h-[130px] mq350small:w-20 mq350small:h-20"
+              >
+                <img
+                  class="relative w-20 h-20 overflow-hidden shrink-0 sm:w-[50px] sm:h-[50px] mq350small:w-10 mq350small:h-10"
+                  alt=""
+                  src="public/assets/trackRecord.svg"
+                />
+              </div>
+              <div
+                class="w-[340px] flex flex-col items-start justify-center gap-[30px] z-[1] lg:self-stretch lg:w-auto"
+              >
+                <h3
+                  class="m-0 self-stretch relative text-inherit font-bold font-inherit lg:text-center sm:text-base mq350small:text-sm"
+                >
+                  Proven track record in manpower recruitment with dedication to
+                  quality
+                </h3>
+                <div
+                  class="self-stretch relative text-base leading-[170%] font-dm-sans lg:text-center sm:text-xs mq350small:text-2xs"
+                >
+                  Our team possesses high level familiarity and experience in
+                  effectively recruiting and placing best candidates into job
+                  positions demonstrating best practices of the recruitment
+                  process.
+                </div>
+              </div>
+            </div>
+            <div
+              class="flex-1 rounded-3xs bg-whitesmoke-200 h-[350px] overflow-hidden flex flex-col items-end justify-center p-[50px] box-border relative gap-[20px] min-w-[400px] max-w-[585px] z-[3] lg:h-[500px] lg:items-center lg:justify-start md:h-[550px] sm:h-[450px] sm:min-w-[256px] sm:max-w-[356px] mq350small:h-[330px] mq350small:pl-5 mq350small:pt-5 mq350small:pr-5 mq350small:box-border"
+            >
+              <div
+                class="my-0 mx-[!important] absolute bottom-[0px] left-[0px] rounded-tl-none rounded-tr-481xl rounded-b-none bg-tomato-100 w-[180px] h-[180px] overflow-hidden shrink-0 flex flex-col items-center justify-center pt-[30px] pb-2.5 pr-[50px] pl-2.5 box-border z-[0] lg:pt-2.5 lg:pr-2.5 lg:box-border lg:static lg:rounded-[500px] sm:w-[130px] sm:h-[130px] mq350small:w-20 mq350small:h-20"
+              >
+                <img
+                  class="relative w-20 h-20 overflow-hidden shrink-0 sm:w-[50px] sm:h-[50px] mq350small:w-10 mq350small:h-10"
+                  alt=""
+                  src="public/assets/industryNetwork.svg"
+                />
+              </div>
+              <div
+                class="w-[340px] flex flex-col items-start justify-center gap-[30px] z-[1] lg:self-stretch lg:w-auto lg:items-center lg:justify-center"
+              >
+                <h3
+                  class="m-0 self-stretch relative text-inherit font-bold font-inherit lg:text-center sm:text-base mq350small:text-sm"
+                >
+                  Industry network for sourcing top talent
+                </h3>
+                <div
+                  class="self-stretch relative text-base leading-[170%] font-dm-sans lg:text-center sm:text-xs mq350small:text-2xs"
+                >
+                  We have cultivated a valuable network of contracts within the
+                  IT industry , leveraging us to identify and attract the best
+                  and most qualified candidates that can contribute to an
+                  organization's success.
+                </div>
+              </div>
+            </div>
+            <div class="why-work-with-us-line absolute -top-[320px] -left-64 w-[1700px] lg:hidden">
+              <lottie-interactivity-scroll
+                class="w-full"
+                animation-url="public/assets/svg-lines/why-work-with-us-line.json"
+                visibility="[0.2, 0.7]"
+                frames="[0, 30]"
+                tag-name="why-work-with-us-line"
+              ></lottie-interactivity-scroll>
+            </div>
+            <div
+              class="z-20 flex-1 rounded-3xs bg-whitesmoke-200 h-[350px] overflow-hidden flex flex-col items-start justify-center p-[50px] box-border relative gap-[20px] min-w-[400px] max-w-[585px] lg:h-[500px] lg:items-center lg:justify-start md:h-[550px] sm:h-[450px] sm:min-w-[256px] sm:max-w-[356px] mq350small:h-[330px] mq350small:p-5 mq350small:box-border"
+            >
+              <div
+                class="my-0 mx-[!important] absolute top-[0px] right-[0px] rounded-t-none rounded-br-none rounded-bl-481xl bg-tomato-100 w-[180px] h-[180px] overflow-hidden shrink-0 flex flex-col items-center justify-center pt-2.5 pb-[30px] pr-2.5 pl-[50px] box-border z-[0] lg:pl-2.5 lg:pb-2.5 lg:box-border lg:static lg:rounded-[500px] sm:w-[130px] sm:h-[130px] mq350small:w-20 mq350small:h-20"
+              >
+                <img
+                  class="relative w-20 h-20 overflow-hidden shrink-0 sm:w-[50px] sm:h-[50px] mq350small:w-10 mq350small:h-10"
+                  alt=""
+                  src="public/assets/ongoingSupport.svg"
+                />
+              </div>
+              <div
+                class="w-[340px] flex flex-col items-start justify-center gap-[30px] z-[1] lg:self-stretch lg:w-auto lg:items-center lg:justify-center"
+              >
+                <h3
+                  class="m-0 self-stretch relative text-inherit font-bold font-inherit lg:text-center sm:text-base mq350small:text-sm"
+                >
+                  Ongoing support extends beyond the hiring process
+                </h3>
+                <div
+                  class="self-stretch relative text-base leading-[170%] font-dm-sans lg:text-center sm:text-xs mq350small:text-2xs"
+                >
+                  At ITO.PH Direct Plus, we commit to organization long-term
+                  success, growth, and satisfaction by providing ongoing support
+                  and resources that go beyond the recruitment phase.
+                </div>
+              </div>
+            </div>
+            <div
+              class="z-20 flex-1 rounded-3xs bg-whitesmoke-200 h-[350px] overflow-hidden flex flex-col items-end justify-center p-[50px] box-border relative gap-[20px] min-w-[400px] max-w-[585px] lg:h-[500px] lg:items-center lg:justify-start lg:static md:h-[550px] sm:h-[450px] sm:min-w-[256px] sm:max-w-[356px] mq350small:h-[330px] mq350small:p-5 mq350small:box-border"
+            >
+              <div
+                class="my-0 mx-[!important] absolute top-[0px] left-[0px] rounded-t-none rounded-br-481xl rounded-bl-none bg-tomato-100 w-[180px] h-[180px] overflow-hidden shrink-0 flex flex-col items-center justify-center pt-2.5 pb-[30px] pr-[50px] pl-2.5 box-border z-[0] lg:gap-[10px] lg:pr-2.5 lg:pb-2.5 lg:box-border lg:static lg:rounded-[500px] sm:w-[130px] sm:h-[130px] mq350small:w-20 mq350small:h-20"
+              >
+                <img
+                  class="relative w-20 h-20 overflow-hidden shrink-0 sm:w-[50px] sm:h-[50px] mq350small:w-10 mq350small:h-10"
+                  alt=""
+                  src="public/assets/trustedByClients.svg"
+                />
+              </div>
+              <div
+                class="w-[340px] flex flex-col items-start justify-center gap-[30px] z-[1] lg:self-stretch lg:w-auto lg:items-center lg:justify-center"
+              >
+                <h3
+                  class="m-0 self-stretch relative text-inherit font-bold font-inherit lg:text-center sm:text-base"
+                >
+                  Trusted by our clients and partners
+                </h3>
+                <div
+                  class="self-stretch relative text-base leading-[170%] font-dm-sans lg:text-center sm:text-xs mq350small:text-2xs"
+                >
+                  Our service earned a high-level of trust and confidence from
+                  our clients and partners by building and maintaining
+                  successful relationships in the IT and recruitment industry.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Our mission -->
+      <section
+        class="self-stretch w-full bg-whitesmoke-200 overflow-hidden shrink-0 flex flex-col items-center justify-center py-[100px] sm:py-[50px] px-8 box-border relative gap-[10px] text-center text-sm text-goldenrod-100 font-dm-sans sm:px-4"
+      >
+        <img
+          class="absolute bottom-0 left-0 w-full overflow-hidden max-h-[1280px] object-cover z-[0]"
+          alt=""
+          src="public/assets/ourMissonBgImg@2x.png"
+        />
+
+        <div
+          class="w-full flex flex-col items-start justify-center gap-[30px] max-w-[1200px] z-[1]"
+        >
+          <div
+            class="self-stretch flex flex-col items-start justify-start gap-[20px]"
+          >
+            <b
+              class="relative leading-[100%] uppercase sm:text-2xs mq350small:text-xs"
+              >our mission</b
+            >
+            <h1
+              class="m-0 self-stretch relative text-[54px] capitalize font-extrabold font-plus-jakarta-sans text-left sm:text-13xl mq350small:text-xl mq640:text-25xl"
+            >
+              <span class="relative">
+                <span>Revolutionize</span>
+                <div class="revolutionize-line absolute -z-10 w-[450px] -top-8 -left-12 mq640:w-[380px] sm:w-[270px] sm:-top-4 sm:-left-8 mq350small:w-[170px] mq350small:-left-5 mq350small:-top-3">
+                  <lottie-interactivity-scroll
+                    class="w-full"
+                    animation-url="public/assets/svg-lines/revolutionize-line.json"
+                    visibility="[0.1, 0.6]"
+                    frames="[0, 60]"
+                    tag-name="revolutionize-line"
+                  ></lottie-interactivity-scroll>
+                </div>
+              </span>
+              <span class="text-darkslateblue-100">
+                the IT industry by unleashing the potential of IT professionals,
+                connecting their dreams with opportunities, and fostering
+                innovation</span
+              >
+            </h1>
+          </div>
+          <h1
+            class="m-0 self-stretch relative text-15xl font-normal font-inherit text-darkslateblue-100 text-left sm:text-base mq350small:text-xs mq640:text-xl"
+          >
+            We aspire to build a global IT community, exceed expectations, and
+            serve as a catalyst for positive change, shaping a future where
+            individuals, organizations, and the broader IT community thrive
+            together. Join us in this transformative journey as we redefine
+            excellence in IT recruitment.
+          </h1>
+        </div>
+      </section>
+      <!-- Consult us how -->
+      <section
+        class="self-stretch h-[630px] overflow-hidden shrink-0 flex flex-col items-center justify-center py-[100px] px-0 box-border bg-[url('public/assets/consult-us-how@3x.png')] bg-cover bg-no-repeat bg-[top] text-left text-sm text-white font-dm-sans lg:h-[500px] lg:items-end lg:justify-center lg:pt-[50px] lg:pb-[50px] lg:box-border md:h-[400px] sm:h-[370px] sm:items-start sm:justify-center sm:pt-[50px] sm:pb-[50px] sm:box-border sm:bg-[url('public/assets/consult-us-how-bg-img-mq640.png')] sm:bg-cover sm:bg-no-repeat sm:bg-center mq350small:h-[430px] mq640:h-[400px] mq640:bg-[url('public/assets/consult-us-how-bg-img-mq640.png')] mq640:bg-cover mq640:bg-no-repeat mq640:bg-center mq768:h-[350px] mq768:pt-[50px] mq768:pb-[50px] mq768:box-border"
+      >
+        <div
+          class="w-full overflow-hidden flex flex-col items-end justify-center py-0 px-20 box-border max-w-[1600px] lg:w-full lg:items-end lg:justify-center lg:pl-8 lg:pr-8 lg:box-border lg:max-w-[1200px] sm:w-full sm:items-center sm:justify-center mq640:items-center mq640:justify-center sm:px-4"
+        >
+          <div
+            class="w-[620px] flex flex-col items-start justify-start gap-[20px] lg:w-[500px] md:w-[400px] sm:self-stretch sm:w-auto mq640:self-stretch mq640:w-auto mq768:w-[330px]"
+          >
+            <b
+              class="relative leading-[100%] uppercase text-goldenrod-100 sm:text-2xs mq768:text-xs"
+              >Consult Us how</b
+            >
+            <h1
+              class="m-0 self-stretch relative text-[40px] leading-[100%] capitalize font-extrabold font-plus-jakarta-sans lg:text-13xl md:text-5xl sm:text-xl mq640:text-5xl mq768:text-xl"
+            >
+              <span>We're here to </span>
+              <span class="relative text-goldenrod-100">
+                <span class="z-10 relative">provide</span>
+                <div class="provide-line absolute z-0 -top-6 -left-10 w-[230px] lg:w-[200px] md:w-[150px] md:-left-7 md:-top-4 mq768:w-[130px] sm:w-[120px] sm:-left-6 mq350small:-top-3 mq375:-top-3">
+                  <lottie-interactivity-scroll
+                    class="w-full"
+                    animation-url="public/assets/svg-lines/provide-line.json"
+                    visibility="[0.1, 0.6]"
+                    frames="[0, 60]"
+                    tag-name="provide-line"
+                  ></lottie-interactivity-scroll>
+                </div>
+              </span>
+              <span>
+                expert guidance and solutions tailored to your specific
+                needs</span
+              >
+            </h1>
+            <div
+              class="self-stretch relative text-base leading-[170%] md:text-xs sm:text-2xs mq640:text-sm mq768:text-2xs"
+            >
+              Our team of experts is ready to assist you and our approach is
+              flexible to accommodate all your needs. Explore our various
+              deployment options to determine which one aligns with your
+              specific needs.
+            </div>
+            <a href="./our-services.html"
+              class="cursor-pointer [border:none] py-2.5 px-[30px] hover:bg-[#E93C32] bg-tomato-100 rounded-31xl overflow-hidden flex flex-row items-center justify-center gap-[10px] lg:py-[7px] lg:px-[25px] lg:box-border md:pt-[5px] md:pb-[5px] md:box-border sm:py-2.5 sm:px-[15px] sm:box-border mq768:py-0.5 mq768:px-5 mq768:box-border no-underline"
+            >
+              <b
+                class="relative text-base capitalize font-plus-jakarta-sans text-white text-left md:text-xs sm:text-[10px] mq768:text-2xs"
+                >explore services</b
+              >
+              <img
+                class="relative w-[35px] h-[35px] overflow-hidden shrink-0 lg:w-[25px] md:w-[25px] sm:w-[15px] sm:h-[15px] mq768:w-5"
+                alt=""
+                src="public/assets/chevronRight.svg"
+              />
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- How it works -->
+      <section
+        id="how-it-works"
+        class="w-full flex flex-col items-center justify-start pt-[100px] mq1366:pb-[100px] lg:pb-[100px] text-center text-sm text-darkslateblue-100 font-dm-sans sm:py-[50px] sm:box-border sm:px-4"
+      >
+        <div
+          class="w-full flex flex-col items-center justify-start gap-[70px] max-w-[1200px]"
+        >
+          <div
+            class="relative self-stretch flex flex-col items-center justify-start gap-[20px]"
+          >
+            <div class="absolute -top-10 -left-5 mq1024:-left-24 md:hidden">
+              <lottie-interactivity-scroll
+                class="w-full"
+                animation-url="public/assets/svg-lines/how-it-works-line.json"
+                visibility="[0.2, 0.7]"
+                frames="[0, 30]"
+                tag-name="how-it-works-line"
+              ></lottie-interactivity-scroll>
+            </div>
+            <b
+              class="relative leading-[100%] uppercase text-goldenrod-100 sm:text-2xs"
+              >how it works</b
+            >
+            <h1
+              class="m-0 self-stretch relative text-31xl capitalize font-extrabold font-plus-jakarta-sans sm:text-13xl mq350small:text-xl mq640:text-25xl"
+            >
+              <span>here’s our </span>
+              <span class="relative text-goldenrod-100">
+                <span>SMART</span>
+                <div class="smart-line absolute -z-10 -top-6 -left-10 w-[250px] mq640:w-[220px] mq640:-left-8 sm:w-[160px] sm:-top-4 sm:-left-6 mq350small:w-[100px] mq350small:-left-4 mq350small:-top-2">
+                  <lottie-interactivity-scroll
+                    class="w-full"
+                    animation-url="public/assets/svg-lines/smart-line.json"
+                    visibility="[0.1, 0.6]"
+                    frames="[0, 60]"
+                    tag-name="smart-line"
+					speed="5"
+                  ></lottie-interactivity-scroll>
+                </div>
+              </span>
+              <span> process</span>
+            </h1>
+            <div
+              class="w-full flex flex-col items-center justify-center max-w-[849px] text-xl"
+            >
+              <div
+                class="self-stretch relative leading-[170%] sm:text-base mq350small:text-xs"
+              >
+                At ITO, we pride ourselves on connecting skilled individuals
+                with the right job opportunities and helping businesses find the
+                talent they need to thrive. Our platform streamlines the entire
+                process, making it easy and efficient for both job seekers and
+                employers.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="px-8 sm:px-4">
+        <div
+          class="relative max-w-[1200px] pb-[100px] sm:pb-[50px] self-stretch flex flex-row items-start justify-center gap-[50px] text-left text-5xl font-plus-jakarta-sans md:flex-col"
+        >
+          <div class="left-container h-screen md:h-auto md:pt-0 flex-1 sticky top-0 md:relative w-full flex items-center">
+            <div
+              class="flex-1 flex flex-col items-start justify-start gap-[30px]"
+            >
+              <div
+                class="option active self-stretch bg-whitesmoke-200 rounded-8xs overflow-hidden flex flex-row items-start justify-start p-2.5 relative gap-[20px] cursor-pointer text-29xl sm:pt-5 sm:pb-5 sm:box-border"
+                data-target="select"
+              >
+                <div
+                  class="absolute my-0 mx-[!important] top-[0px] right-[0px] leading-[100%] font-extrabold z-[0] text-darkslateblue-200"
+                >
+                  01
+                </div>
+                <div
+                  class="rounded-3xs bg-whitesmoke-200 overflow-hidden flex flex-col items-center justify-center p-[15px] z-[1]"
+                >
+                  <img
+                    class="relative w-[50px] h-[50px] overflow-hidden shrink-0 sm:w-10 sm:h-10"
+                    alt=""
+                    src="public/assets/selectAndSecure.svg"
+                  />
+                </div>
+                <div
+                  class="self-stretch flex-1 overflow-hidden flex flex-col items-start justify-center py-0 pr-5 pl-0 gap-[10px] z-[2] text-5xl text-darkslateblue-100"
+                >
+                  <h3
+                    class="m-0 self-stretch relative text-inherit leading-[100%] font-bold font-inherit md:text-xl sm:text-base"
+                  >
+                    Select and Secure
+                  </h3>
+                  <div
+                    class="self-stretch relative text-xs font-dm-sans sm:text-xs"
+                  >
+                    Options for candidate deployment: Onshore, Offshore, or
+                    Remote work setups.
+                  </div>
+                </div>
+              </div>
+              <div
+                class="option self-stretch rounded-8xs bg-whitesmoke-200 overflow-hidden flex flex-row items-start justify-start p-2.5 relative gap-[20px] sm:pt-5 cursor-pointer sm:pb-5 sm:box-border"
+                data-target="match"
+              >
+                <div
+                  class="rounded-3xs bg-whitesmoke-200 overflow-hidden flex flex-col items-center justify-center p-[15px] z-[0]"
+                >
+                  <img
+                    class="relative w-[50px] h-[50px] overflow-hidden shrink-0 sm:w-10 sm:h-10"
+                    alt=""
+                    src="public/assets/match.svg"
+                  />
+                </div>
+                <div
+                  class="self-stretch flex-1 overflow-hidden flex flex-col items-start justify-center py-0 pr-5 pl-0 gap-[10px] z-[1] text-darkslateblue-100"
+                >
+                  <h3
+                    class="m-0 self-stretch relative text-inherit leading-[100%] font-bold font-inherit md:text-xl sm:text-base"
+                  >
+                    Match
+                  </h3>
+                  <div
+                    class="self-stretch relative text-smi font-dm-sans sm:text-xs"
+                  >
+                    Partner with Oh! Jobs for candidate sourcing and thorough
+                    qualification reviews.
+                  </div>
+                </div>
+                <div
+                  class="absolute my-0 mx-[!important] top-[0px] right-[0px] text-29xl leading-[100%] font-extrabold text-darkslateblue-200 z-[2]"
+                >
+                  02
+                </div>
+              </div>
+              <div
+                class="option self-stretch rounded-8xs bg-whitesmoke-200 overflow-hidden flex flex-row items-start justify-start p-2.5 relative gap-[20px] cursor-pointer sm:pt-5 sm:pb-5 sm:box-border"
+                data-target="assessment"
+              >
+                <div
+                  class="rounded-3xs bg-whitesmoke-200 overflow-hidden flex flex-col items-center justify-center p-[15px] z-[0]"
+                >
+                  <img
+                    class="relative w-[50px] h-[50px] overflow-hidden shrink-0 sm:w-10 sm:h-10"
+                    alt=""
+                    src="public/assets/assessment.svg"
+                  />
+                </div>
+                <div
+                  class="self-stretch flex-1 overflow-hidden flex flex-col items-start justify-center py-0 pr-5 pl-0 gap-[10px] z-[1] text-darkslateblue-100"
+                >
+                  <h3
+                    class="m-0 self-stretch relative text-inherit leading-[100%] font-bold font-inherit md:text-xl sm:text-base"
+                  >
+                    Assessment
+                  </h3>
+                  <div
+                    class="self-stretch relative text-smi font-dm-sans sm:text-xs"
+                  >
+                    Assess technical skills, conduct reference checks, and
+                    provide detailed candidate feedback.
+                  </div>
+                </div>
+                <div
+                  class="absolute my-0 mx-[!important] top-[0px] right-[0px] text-29xl leading-[100%] font-extrabold text-darkslateblue-200 z-[2]"
+                >
+                  03
+                </div>
+              </div>
+              <div
+                class="option self-stretch rounded-8xs bg-whitesmoke-200 overflow-hidden flex flex-row items-start justify-start p-2.5 relative gap-[20px] cursor-pointer sm:pt-5 sm:pb-5 sm:box-border"
+                data-target="recruit"
+              >
+                <div
+                  class="rounded-3xs bg-whitesmoke-200 overflow-hidden flex flex-col items-center justify-center p-[15px] z-[0]"
+                >
+                  <img
+                    class="relative w-[50px] h-[50px] overflow-hidden shrink-0 sm:w-10 sm:h-10"
+                    alt=""
+                    src="public/assets/recruit.svg"
+                  />
+                </div>
+                <div
+                  class="self-stretch flex-1 overflow-hidden flex flex-col items-start justify-center py-0 pr-5 pl-0 gap-[10px] z-[1] text-darkslateblue-100"
+                >
+                  <h3
+                    class="m-0 self-stretch relative text-inherit leading-[100%] font-bold font-inherit md:text-xl sm:text-base"
+                  >
+                    Recruit
+                  </h3>
+                  <div
+                    class="self-stretch relative text-smi font-dm-sans sm:text-xs"
+                  >
+                    Handle job offers, salary negotiations, and ensure contract
+                    compliance with legal standards.
+                  </div>
+                </div>
+                <div
+                  class="absolute my-0 mx-[!important] top-[0px] right-[0px] text-29xl leading-[100%] font-extrabold text-darkslateblue-200 z-[2]"
+                >
+                  04
+                </div>
+              </div>
+              <div
+                class="option self-stretch rounded-8xs bg-whitesmoke-200 overflow-hidden flex flex-row items-start justify-start p-2.5 relative gap-[20px] cursor-pointer sm:pt-5 sm:pb-5 sm:box-border"
+                data-target="tend"
+              >
+                <div
+                  class="rounded-3xs bg-whitesmoke-200 overflow-hidden flex flex-col items-center justify-center p-[15px] z-[0]"
+                >
+                  <img
+                    class="relative w-[50px] h-[50px] overflow-hidden shrink-0 sm:w-10 sm:h-10"
+                    alt=""
+                    src="public/assets/tend.svg"
+                  />
+                </div>
+                <div
+                  class="self-stretch flex-1 overflow-hidden flex flex-col items-start justify-center py-0 pr-5 pl-0 gap-[10px] z-[1] text-darkslateblue-100"
+                >
+                  <h3
+                    class="m-0 self-stretch relative text-inherit leading-[100%] font-bold font-inherit md:text-xl sm:text-base"
+                  >
+                    Tend
+                  </h3>
+                  <div
+                    class="self-stretch relative text-smi font-dm-sans sm:text-xs"
+                  >
+                    Manage pre-departure logistics, permits, and utilize Hi!
+                    Molly for seamless employer-employee connections.
+                  </div>
+                </div>
+                <div
+                  class="absolute my-0 mx-[!important] top-[0px] right-[0px] text-29xl leading-[100%] font-extrabold text-darkslateblue-200 z-[2]"
+                >
+                  05
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="right-container flex-1 flex flex-col items-start justify-start gap-[50px] text-11xl"
+          >
+            <div class="card h-screen md:h-auto md:pt-0 flex items-center" id="select">
+              <div
+                class="rounded-3xs bg-whitesmoke-200 text-darkslateblue-100 shadow-[0px_0px_5px_rgba(0,_0,_0,_0.15)] h-[620px] md:h-auto flex flex-col items-start justify-start"
+              >
+                <img
+                  class="self-stretch rounded-3xs max-w-full overflow-hidden max-h-full object-cover"
+                  alt=""
+                  src="public/assets/selectAndSecureImg@2x.png"
+                />
+  
+                <div
+                  class="self-stretch flex-1 rounded-t-none rounded-b-3xs overflow-hidden flex flex-col items-start justify-center lg:justify-start px-[50px] lg:p-[50px] gap-[20px] sm:p-[30px] sm:box-border"
+                >
+                  <h2
+                    class="m-0 self-stretch relative text-inherit leading-[100%] capitalize font-bold font-inherit md:text-11xl sm:text-xl mq350small:text-base"
+                  >
+                    Select and Secure
+                  </h2>
+                  <div
+                    class="self-stretch relative text-lg leading-[170%] font-dm-sans lg:text-[16px] md:text-[14px] sm:text-xs"
+                  >
+                    After receiving your job order, we begin by understanding
+                    your organization’s needs or requirements for IT engineers
+                    or ICT workers. You’ll have an option of a work setup for
+                    the candidate. You can choose from Offshore, Remote, and
+                    Onshore deployment.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card h-screen md:h-auto md:pt-0 flex items-center" id="match">
+              <div
+                class="rounded-3xs bg-whitesmoke-200 text-darkslateblue-100 shadow-[0px_0px_5px_rgba(0,_0,_0,_0.15)] h-[620px] md:h-auto flex flex-col items-start justify-start"
+              >
+                <img
+                  class="self-stretch rounded-3xs max-w-full overflow-hidden max-h-full object-cover"
+                  alt=""
+                  src="public/assets/matchImg@2x.png"
+                />
+  
+                <div
+                  class="self-stretch flex-1 rounded-t-none rounded-b-3xs overflow-hidden flex flex-col items-start justify-center lg:justify-start px-[50px] lg:p-[50px] gap-[20px] sm:p-[30px] sm:box-border"
+                >
+                  <h2
+                    class="m-0 self-stretch relative text-inherit leading-[100%] capitalize font-bold font-inherit md:text-11xl sm:text-xl mq350small:text-base"
+                  >
+                    match
+                  </h2>
+                  <div
+                    class="self-stretch relative text-lg leading-[170%] font-dm-sans lg:text-[16px] md:text-[14px] sm:text-xs"
+                  >
+                    We connect with Oh! Jobs, to source the best candidates that
+                    best fit your requirements. We thoroughly review resumes and
+                    credentials to sort qualified candidates ready for you to
+                    interview.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card h-screen md:h-auto md:pt-0 flex items-center" id="assessment">
+              <div
+                class="rounded-3xs bg-whitesmoke-200 text-darkslateblue-100 shadow-[0px_0px_5px_rgba(0,_0,_0,_0.15)] h-[620px] md:h-auto flex flex-col items-start justify-start"
+              >
+                <img
+                  class="self-stretch flex-1 rounded-3xs max-w-full overflow-hidden max-h-full object-cover"
+                  alt=""
+                  src="public/assets/assessmentImg@2x.png"
+                />
+  
+                <div
+                  class="self-stretch flex-1 rounded-t-none rounded-b-3xs overflow-hidden flex flex-col items-start justify-center lg:justify-start px-[50px] lg:p-[50px] gap-[20px] sm:p-[30px] sm:box-border"
+                >
+                  <h2
+                    class="m-0 self-stretch relative text-inherit leading-[100%] capitalize font-bold font-inherit md:text-11xl sm:text-xl mq350small:text-base"
+                  >
+                    assessment
+                  </h2>
+                  <div
+                    class="self-stretch relative text-lg leading-[170%] font-dm-sans lg:text-[16px] md:text-[14px] sm:text-xs"
+                  >
+                    They undergo a special assessment that evaluates their
+                    technical skills and knowledge. Our reference checks ensure
+                    we are dealing with the right candidate. On final selection,
+                    we provide you with a shortlist and comprehensive feedback
+                    on each candidate’s strengths, weaknesses, and suitability.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card h-screen md:h-auto md:pt-0 flex items-center" id="recruit">
+              <div
+                class="rounded-3xs bg-whitesmoke-200 text-darkslateblue-100 shadow-[0px_0px_5px_rgba(0,_0,_0,_0.15)] h-[620px] md:h-auto flex flex-col items-start justify-start"
+              >
+                <img
+                  class="self-stretch flex-1 rounded-3xs max-w-full overflow-hidden max-h-full object-cover"
+                  alt=""
+                  src="public/assets/frame-90@2x.png"
+                />
+  
+                <div
+                  class="self-stretch flex-1 rounded-t-none rounded-b-3xs overflow-hidden flex flex-col items-start justify-center lg:justify-start px-[50px] lg:p-[50px] gap-[20px] sm:p-[30px] sm:box-border"
+                >
+                  <b class="self-stretch relative leading-[100%] capitalize md:text-11xl sm:text-xl mq350small:text-base"
+                    >recruit</b
+                  >
+                  <div
+                    class="self-stretch relative text-lg leading-[170%] font-dm-sans lg:text-[16px] md:text-[14px] sm:text-xs"
+                  >
+                    We extend the job offer to the selected IT engineers and
+                    handle salary negotiations, benefits, and contracts. We also
+                    verify the contract to comply with the prevailing laws in
+                    the Philippines and the host country.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card h-screen md:h-auto md:pt-0 flex items-center" id="tend">
+              <div 
+                class="rounded-3xs bg-whitesmoke-200 text-darkslateblue-100 shadow-[0px_0px_5px_rgba(0,_0,_0,_0.15)] h-[620px] md:h-auto flex flex-col items-start justify-start"
+              >
+                <img
+                  class="self-stretch flex-1 rounded-3xs max-w-full overflow-hidden max-h-full object-cover"
+                  alt=""
+                  src="public/assets/frame-901@2x.png"
+                />
+  
+                <div
+                  class="self-stretch flex-1 rounded-t-none rounded-b-3xs overflow-hidden flex flex-col items-start justify-center lg:justify-start px-[50px] lg:p-[50px] gap-[20px] sm:p-[30px] sm:box-border"
+                >
+                  <b class="self-stretch relative leading-[100%] capitalize md:text-11xl sm:text-xl mq350small:text-base"
+                    >tend</b
+                  >
+                  <div
+                    class="self-stretch relative text-lg leading-[170%] font-dm-sans lg:text-[16px] md:text-[14px] sm:text-xs"
+                  >
+                    We manage and provide pre-departure orientation and handle
+                    permit, document, and deployment processes, including
+                    medical, travel, and visa processing coordination. We
+                    utilize Hi! Molly, to establish connections between
+                    employers and their employees,  regardless of whether they
+                    work remotely or offshore.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Why work with filipinos pt.1 -->
+      <section
+        class="self-stretch bg-darkslateblue-100 overflow-hidden flex flex-col items-center justify-center py-[100px] sm:py-[50px] px-8 sm:px-4 relative gap-[10px] text-center text-sm text-goldenrod-100 font-dm-sans"
+      >
+        <img
+          class="absolute my-0 mx-[!important] right-[0px] bottom-[0px] max-w-full min-w-[1600px] max-h-[700px] object-cover z-[0] opacity-30"
+          alt=""
+          src="public/assets/cornerRight@2x.png"
+        />
+        <img
+          class="absolute my-0 mx-[!important] top-[0px] left-[0px] max-w-full min-w-[1600px] max-h-[700px] object-cover z-[1] opacity-30"
+          alt=""
+          src="public/assets/cornerLeft@2x.png"
+        />
+
+        <div
+          class="w-full flex flex-col items-center justify-center gap-[50px] max-w-[1200px] z-[2]"
+        >
+          <div
+            class="self-stretch flex flex-col items-center justify-start gap-[20px]"
+          >
+            <b class="relative leading-[100%] uppercase sm:text-2xs"
+              >why work with filipinos</b
+            >
+            <h1
+              class="m-0 self-stretch relative text-31xl capitalize font-extrabold font-plus-jakarta-sans sm:text-13xl mq350small:text-xl mq640:text-25xl mq375:text-[30px]"
+            >
+              <span class="relative">
+                <span>Working with Filipinos</span>
+                <div class="working-with-filipinos-line w-[660px] absolute -z-10 -top-14 -left-16 mq640:w-[600px] mq640:-top-12 sm:w-[420px] sm:-top-8 sm:-left-10 mq350small:w-[270px] mq350small:-left-7 mq350small:-top-5 mq375:-left-12">
+                  <lottie-interactivity-scroll
+                    class="w-full"
+                    animation-url="public/assets/svg-lines/working-with-filipinos-line.json"
+                    visibility="[0, 0.6]"
+                    frames="[0, 60]"
+                    tag-name="working-with-filipinos-line"
+                  ></lottie-interactivity-scroll>
+              </div>
+              </span>
+              <span class="text-white">
+                can be a highly rewarding experience for numerous reasons</span
+              >
+            </h1>
+            <div
+              class="w-full flex flex-col items-center justify-center max-w-[849px] text-xl text-white"
+            >
+              <div
+                class="self-stretch relative leading-[170%] sm:text-base mq350small:text-xs"
+              >
+                Filipinos are known for their strong work ethic, dedication, and
+                resilience.
+              </div>
+            </div>
+          </div>
+          <div
+            class="self-stretch flex flex-row flex-wrap items-center justify-center gap-[80px] text-11xl text-white font-plus-jakarta-sans md:gap-[120px] mq350small:gap-[50px] mq640:gap-[80px]"
+          >
+            <div
+              class="flex-1 flex flex-col items-center justify-center pt-10 px-0 pb-0 box-border relative gap-[30px] max-w-[263px] md:max-w-[200px] mq640:min-w-[263px]"
+            >
+              <img
+                class="absolute my-0 mx-[!important] top-[-1.1px] left-[calc(50%_-_140.4px)] w-[280.9px] h-[141.6px] z-[0]"
+                alt=""
+                src="public/assets/halfCircleArrow.svg"
+              />
+
+              <div
+                class="rounded-81xl bg-tomato-100 w-[175px] h-[175px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-10 box-border z-[1] lg:rounded-[500px] mq350small:w-[150px] mq350small:h-[150px]"
+              >
+                <img
+                  class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+                  alt=""
+                  src="public/assets/strongWorkEthicIcon@2x.png"
+                />
+              </div>
+              <h2
+                class="m-0 relative text-inherit capitalize font-bold font-inherit z-[2] mq350small:text-base mq640:text-5xl"
+              >
+                strong work ethic
+              </h2>
+            </div>
+            <div
+              class="flex-1 flex flex-col items-center justify-center relative gap-[30px] max-w-[263px] md:max-w-[200px] mq640:min-w-[263px]"
+            >
+              <img
+                class="absolute my-0 mx-[!important] bottom-[45.9px] left-[calc(50%_-_140.4px)] w-[280.9px] h-[141.6px] z-[0]"
+                alt=""
+                src="public/assets/halfCircleArrowUp.svg"
+              />
+
+              <div
+                class="rounded-81xl bg-tomato-100 w-[175px] h-[175px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-10 box-border z-[1] lg:rounded-[500px] mq350small:w-[150px] mq350small:h-[150px]"
+              >
+                <img
+                  class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+                  alt=""
+                  src="public/assets/dedicationIcon@2x.png"
+                />
+              </div>
+              <div
+                class="self-stretch flex flex-col items-center justify-center pt-10 px-0 pb-0 z-[2]"
+              >
+                <h2
+                  class="m-0 self-stretch relative text-inherit leading-[100%] capitalize font-bold font-inherit mq350small:text-base mq640:text-5xl"
+                >
+                  dedication
+                </h2>
+              </div>
+            </div>
+            <div
+              class="flex-1 flex flex-col items-center justify-center pt-10 px-0 pb-0 box-border relative gap-[30px] max-w-[263px] md:max-w-[200px] mq640:min-w-[263px]"
+            >
+              <img
+                class="absolute my-0 mx-[!important] top-[-0.6px] left-[calc(50%_-_140.4px)] w-[280.9px] h-[141.6px] z-[0]"
+                alt=""
+                src="public/assets/halfCircleArrow.svg"
+              />
+
+              <div
+                class="rounded-81xl bg-tomato-100 w-[175px] h-[175px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-10 box-border z-[1] lg:rounded-[500px] mq350small:w-[150px] mq350small:h-[150px]"
+              >
+                <img
+                  class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+                  alt=""
+                  src="public/assets/challenge-1@2x.png"
+                />
+              </div>
+              <div
+                class="self-stretch flex flex-col items-center justify-center z-[2]"
+              >
+                <h2
+                  class="m-0 self-stretch relative text-inherit leading-[100%] capitalize font-bold font-inherit mq350small:text-base mq640:text-5xl"
+                >
+                  resilience
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Why work with filipinos pt.2 -->
+      <section
+        class="self-stretch bg-white overflow-hidden flex flex-col items-center justify-center py-[100px] px-8 sm:px-4 gap-[100px] sm:gap-[50px] text-left text-31xl text-goldenrod-100 font-plus-jakarta-sans md:items-center md:justify-center sm:py-[50px] sm:box-border"
+      >
+        <div
+          class="relative flex flex-row items-center justify-center gap-[50px] max-w-[1200px] md:flex-col sm:flex-col mq640:flex-col mq768:flex-col"
+        >
+          <div
+            class="h-full flex-1 overflow-hidden flex flex-col items-center justify-center min-w-[475px] max-w-[575px] sm:min-w-[255px] sm:max-w-[400px] mq768:min-w-[375px] mq768:max-w-[675px]"
+          >
+            <img
+              class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-contain"
+              alt=""
+              src="public/assets/workplacePositivityImg@2x.png"
+            />
+          </div>
+          <div class="workplace-line absolute top-0 -right-80 lg:hidden">
+            <lottie-interactivity-scroll
+              class="w-full"
+              animation-url="public/assets/svg-lines/workplace-line.json"
+              visibility="[0.1, 0.5]"
+              frames="[0, 60]"
+              tag-name="workplace-line"
+            ></lottie-interactivity-scroll>
+          </div>
+          <div
+            class="flex-1 overflow-hidden flex flex-col items-center justify-center gap-[20px] min-w-[420px] max-w-[575px] sm:min-w-[255px] sm:max-w-[400px] mq768:max-w-[700px]"
+          >
+            <h1
+              class="m-0 self-stretch relative text-inherit capitalize font-extrabold font-inherit sm:text-13xl mq350small:text-xl mq640:text-25xl"
+            >
+              Workplace Positivity and Productivity
+            </h1>
+            <div
+              class="self-stretch relative text-base leading-[170%] font-dm-sans text-darkslateblue-100 sm:text-base mq350small:text-xs"
+            >
+              They bring a positive attitude and a cheerful disposition to the
+              workplace, fostering a vibrant and productive environment. Their
+              exceptional communication skills, proficiency in English, and
+              adaptability make them valuable assets in global business
+              settings.
+            </div>
+            <div
+              class="self-stretch overflow-hidden flex flex-col items-start justify-center text-xl text-tomato-100 sm:items-start sm:justify-center"
+            >
+              <div
+                class="self-stretch overflow-hidden flex flex-row items-center justify-start border-b-[1px] border-solid border-gainsboro sm:items-start sm:justify-center"
+              >
+                <div
+                  class="overflow-hidden flex flex-col items-center justify-center p-2.5"
+                >
+                  <div
+                    class="relative leading-[170%] capitalize font-extrabold"
+                  >
+                    01.
+                  </div>
+                </div>
+                <div
+                  class="flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5 text-base text-darkslateblue-100 font-dm-sans"
+                >
+                  <div
+                    class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+                  >
+                    exceptional communication skills
+                  </div>
+                </div>
+              </div>
+              <div
+                class="self-stretch overflow-hidden flex flex-row items-center justify-start border-b-[1px] border-solid border-gainsboro sm:items-center sm:justify-center"
+              >
+                <div
+                  class="overflow-hidden flex flex-col items-center justify-center p-2.5"
+                >
+                  <div
+                    class="relative leading-[170%] capitalize font-extrabold"
+                  >
+                    02.
+                  </div>
+                </div>
+                <div
+                  class="flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5 text-base text-darkslateblue-100 font-dm-sans"
+                >
+                  <div
+                    class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+                  >
+                    proficiency in english
+                  </div>
+                </div>
+              </div>
+              <div
+                class="self-stretch overflow-hidden flex flex-row items-center justify-start border-b-[1px] border-solid border-gainsboro sm:items-start sm:justify-center"
+              >
+                <div
+                  class="overflow-hidden flex flex-col items-center justify-center p-2.5"
+                >
+                  <div
+                    class="relative leading-[170%] capitalize font-extrabold"
+                  >
+                    03.
+                  </div>
+                </div>
+                <div
+                  class="flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5 text-base text-darkslateblue-100 font-dm-sans"
+                >
+                  <div
+                    class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+                  >
+                    adaptability
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="relative w-full flex flex-row items-center justify-center gap-[50px] max-w-[1200px] md:flex-col md:items-center md:justify-center sm:flex-col mq640:flex-col mq768:flex-col"
+        >
+          <div class="teamwork-line absolute bottom-0 -left-72 lg:hidden">
+            <lottie-interactivity-scroll
+              class="w-full"
+              animation-url="public/assets/svg-lines/teamwork-line.json"
+              visibility="[0.1, 0.5]"
+              frames="[0, 60]"
+              tag-name="teamwork-line"
+            ></lottie-interactivity-scroll>
+          </div>
+          <div
+            class="flex-1 overflow-hidden flex flex-col items-start justify-center gap-[20px] min-w-[420px] max-w-[575px] sm:min-w-[255px] sm:max-w-[400px] mq768:max-w-[700px] md:order-2"
+          >
+            <h1
+              class="m-0 self-stretch relative text-inherit capitalize font-extrabold font-inherit sm:text-13xl mq350small:text-xl mq640:text-25xl"
+            >
+              Teamwork and Community Values in Filipino Work Culture
+            </h1>
+            <div
+              class="self-stretch relative text-base leading-[170%] font-dm-sans text-darkslateblue-100 sm:text-base mq350small:text-xs"
+            >
+              Filipinos also place a strong emphasis on teamwork and
+              collaboration, ensuring a harmonious atmosphere and effective
+              cooperation among colleagues. Moreover, their cultural values,
+              such as respect for authority and a strong sense of community,
+              contribute to a respectful and inclusive work environment.
+            </div>
+            <div
+              class="self-stretch overflow-hidden flex flex-col items-start justify-center text-xl text-tomato-100 sm:items-start sm:justify-center"
+            >
+              <div
+                class="self-stretch overflow-hidden flex flex-row items-center justify-start border-b-[1px] border-solid border-gainsboro sm:items-start sm:justify-center"
+              >
+                <div
+                  class="overflow-hidden flex flex-col items-center justify-center p-2.5"
+                >
+                  <div
+                    class="relative leading-[170%] capitalize font-extrabold"
+                  >
+                    01.
+                  </div>
+                </div>
+                <div
+                  class="flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5 text-base text-darkslateblue-100 font-dm-sans"
+                >
+                  <div
+                    class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+                  >
+                    Fostering effective cooperation among colleagues
+                  </div>
+                </div>
+              </div>
+              <div
+                class="self-stretch overflow-hidden flex flex-row items-center justify-start border-b-[1px] border-solid border-gainsboro sm:items-center sm:justify-center"
+              >
+                <div
+                  class="overflow-hidden flex flex-col items-center justify-center p-2.5"
+                >
+                  <div
+                    class="relative leading-[170%] capitalize font-extrabold"
+                  >
+                    02.
+                  </div>
+                </div>
+                <div
+                  class="flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5 text-base text-darkslateblue-100 font-dm-sans"
+                >
+                  <div
+                    class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+                  >
+                    Strong sense of community
+                  </div>
+                </div>
+              </div>
+              <div
+                class="self-stretch overflow-hidden flex flex-row items-center justify-start border-b-[1px] border-solid border-gainsboro sm:items-start sm:justify-center"
+              >
+                <div
+                  class="overflow-hidden flex flex-col items-center justify-center p-2.5"
+                >
+                  <div
+                    class="relative leading-[170%] capitalize font-extrabold"
+                  >
+                    03.
+                  </div>
+                </div>
+                <div
+                  class="flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5 text-base text-darkslateblue-100 font-dm-sans"
+                >
+                  <div
+                    class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+                  >
+                    Respectful workplace
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="h-full flex-1 overflow-hidden flex flex-col items-center justify-center min-w-[475px] max-w-[575px] max-h-[488px] sm:min-w-[255px] sm:max-w-[400px] mq768:min-w-[375px] mq768:max-w-[675px] mq768:max-h-[600px] md:order-1"
+          >
+            <img
+              class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+              alt=""
+              src="public/assets/teamworkImg@2x.png"
+            />
+          </div>
+        </div>
+      </section>
+      <!-- Why work with filipinos pt.3 -->
+      <section
+        class="self-stretch h-[620px] overflow-hidden shrink-0 flex flex-col items-center justify-center py-0 px-8 sm:px-4 box-border relative gap-[10px] bg-[url('public/assets/whyWorkBgImg.jpg')] bg-cover bg-no-repeat bg-fixed bg-center text-center text-21xl text-goldenrod-100 font-plus-jakarta-sans mq350small:h-[420px]"
+      >
+        <img
+          class="self-stretch flex-1 absolute my-0 mx-[!important] top-[0px] left-[0px] max-w-full min-w-[900px] overflow-hidden max-h-[700px] object-cover z-[0]"
+          alt=""
+          src="public/assets/cornerLeft@2x.png"
+        />
+
+        <img
+          class="self-stretch flex-1 absolute my-0 mx-[!important] right-[0px] bottom-[0px] max-w-full min-w-[900px] overflow-hidden max-h-[700px] object-cover z-[1]"
+          alt=""
+          src="public/assets/cornerRight@2x.png"
+        />
+
+        <div
+          class="self-stretch flex flex-col items-center justify-center z-[2] sm:pt-[50px] sm:pb-[50px] sm:box-border"
+        >
+          <div
+            class="relative w-full flex flex-col items-start justify-center max-w-[1200px]"
+          >
+            <h1
+              class="m-0 self-stretch relative text-[40px] capitalize font-bold font-inherit sm:text-13xl mq350small:text-xl mq640:text-25xl"
+            >
+              <span class="relative">
+                <span>Overall</span>
+                <div class="overall-line absolute -z-10 -top-4 -left-14 w-[250px] sm:w-[200px] sm:-left-12 mq350small:w-[120px] mq350small:-left-6 mq350small:-top-2">
+                  <lottie-interactivity-scroll
+                    class="w-full"
+                    animation-url="public/assets/svg-lines/overall-line.json"
+                    visibility="[0.1, 0.6]"
+                    frames="[0, 60]"
+                    tag-name="overall-line"
+                  ></lottie-interactivity-scroll>
+                </div>
+              </span>
+              <span class="text-white"
+                >, working with Filipinos often results in a diverse, dynamic,
+                and committed workforce, making them an excellent choice for
+                international teams and organizations</span
+              >
+            </h1>
+          </div>
+        </div>
+      </section>
+      <!-- Why philippines -->
+      <section
+        class="self-stretch bg-white overflow-hidden flex flex-col items-center justify-center py-[100px] px-8 sm:px-4 gap-[100px] text-center text-sm text-goldenrod-100 font-dm-sans sm:gap-[50px] sm:py-[50px] sm:box-border"
+      >
+        <div
+          class="relative w-full flex flex-col items-center justify-center max-w-[1200px]"
+        >
+          <div class="why-philippines-line absolute top-14 -left-48 w-[1200px] lg:w-[900px] lg:-left-16 lg:top-32 md:hidden">
+            <lottie-interactivity-scroll
+              class="w-full"
+              animation-url="public/assets/svg-lines/why-philippines-line.json"
+              visibility="[0.2, 0.7]"
+              frames="[0, 60]"
+              tag-name="why-philippines-line"
+            ></lottie-interactivity-scroll>
+          </div>
+          <div
+            class=" elf-stretch flex flex-col items-center justify-start gap-[20px]"
+          >
+            <b class="relative leading-[100%] uppercase sm:text-2xs"
+              >why philippines?</b
+            >
+            <h1
+              class="m-0 self-stretch relative text-31xl capitalize font-extrabold font-plus-jakarta-sans sm:text-13xl mq350small:text-xl mq640:text-25xl"
+            >
+              <span class="relative">
+                <span class="z-10 relative">The Philippines</span>
+                <div class="the-philippines-line absolute z-0 -top-4 -left-4 w-[400px] mq640:w-[360px] sm:w-[270px] mq350small:w-[170px] mq350small:-top-2 mq350small:-left-3">
+                  <lottie-interactivity-scroll
+                    class="w-full"
+                    animation-url="public/assets/svg-lines/the-philippines-line.json"
+                    visibility="[0.1, 0.6]"
+                    frames="[0, 60]"
+                    tag-name="the-philippines-line"
+                  ></lottie-interactivity-scroll>
+                </div>
+              </span>
+              <span class="text-darkslateblue-100"
+                >: An Ideal Outsourcing Destination</span
+              >
+            </h1>
+            <div
+              class="w-full flex flex-col items-center justify-center max-w-[849px] text-xl text-darkslateblue-100"
+            >
+              <div
+                class="self-stretch relative leading-[170%] sm:text-base mq350small:text-xs"
+              >
+                These factors collectively make the Philippines an appealing
+                destination for businesses looking to outsource their operations
+                and services, offering a balance of cost savings and
+                high-quality work.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="z-10 w-full overflow-hidden flex flex-row flex-wrap items-center justify-center gap-[20px] max-w-[1600px] text-left text-darkslateblue-100"
+        >
+          <div
+            class="flex-1 bg-whitesmoke-200 box-border h-[515px] overflow-hidden flex flex-col items-start justify-between pt-[50px] px-[30px] pb-[30px] min-w-[385px] max-w-[400px] border-t-[5px] border-solid border-tomato-100 lg:max-w-[600px] sm:self-stretch sm:h-auto sm:min-w-[200px] sm:min-h-[450px] mq768:h-[550px] mq768:min-w-[385px]"
+          >
+            <div
+              class="self-stretch flex flex-col items-start justify-center gap-[20px]"
+            >
+              <div
+                class="self-stretch flex flex-col items-center justify-center"
+              >
+                <img
+                  class="relative w-[248.1px] h-[200px] overflow-hidden shrink-0"
+                  alt=""
+                  src="public/assets/costEffectiveGraphics.svg"
+                />
+              </div>
+              <div
+                class="self-stretch relative leading-[170%] mq350small:text-xs"
+              >
+                The Philippines offers a cost-effective labor market, with
+                competitive wages compared to many Western countries, reducing
+                operational expenses which will lead to significant cost savings
+                in terms of labor, infrastructure, and technology, which can be
+                reinvested in other areas of the business.
+              </div>
+            </div>
+            <div
+              class="self-stretch flex flex-row items-center justify-center text-base font-plus-jakarta-sans"
+            >
+              <div
+                class="overflow-hidden flex flex-col items-center justify-center py-[5px] pr-[5px] pl-0"
+              >
+                <b class="relative leading-[170%] capitalize mq350small:text-xs"
+                  >01.</b
+                >
+              </div>
+              <b
+                class="flex-1 relative leading-[170%] capitalize mq350small:text-xs"
+                >Cost-Effective Labor</b
+              >
+            </div>
+          </div>
+          <div
+            class="flex-1 bg-whitesmoke-200 box-border h-[515px] overflow-hidden flex flex-col items-start justify-between pt-[50px] px-[30px] pb-[30px] min-w-[385px] max-w-[400px] border-t-[5px] border-solid border-tomato-100 lg:max-w-[600px] sm:self-stretch sm:h-auto sm:min-w-[200px] sm:min-h-[450px] mq768:h-[550px] mq768:min-w-[385px]"
+          >
+            <div
+              class="self-stretch flex flex-col items-start justify-center gap-[20px]"
+            >
+              <div
+                class="self-stretch flex flex-col items-center justify-center"
+              >
+                <img
+                  class="relative w-[203px] h-[194px] overflow-hidden shrink-0"
+                  alt=""
+                  src="public/assets/skilledGraphics.svg"
+                />
+              </div>
+              <div
+                class="self-stretch relative leading-[170%] mq350small:text-xs"
+              >
+                The country has a large pool of skilled and highly-educated
+                professionals across various industries, particularly in IT,
+                customer service, and business process outsourcing which are
+                committed to providing high-quality service, with a strong focus
+                on meeting and exceeding client expectations.
+              </div>
+            </div>
+            <div
+              class="self-stretch flex flex-row items-center justify-center text-base font-plus-jakarta-sans"
+            >
+              <div
+                class="overflow-hidden flex flex-col items-center justify-center py-[5px] pr-[5px] pl-0"
+              >
+                <b class="relative leading-[170%] capitalize mq350small:text-xs"
+                  >02.</b
+                >
+              </div>
+              <b
+                class="flex-1 relative leading-[170%] capitalize mq350small:text-xs"
+                >Skilled and Talented Workforce</b
+              >
+            </div>
+          </div>
+          <div
+            class="flex-1 bg-whitesmoke-200 box-border h-[515px] overflow-hidden flex flex-col items-start justify-between pt-[50px] px-[30px] pb-[30px] min-w-[385px] max-w-[400px] border-t-[5px] border-solid border-tomato-100 lg:max-w-[600px] sm:self-stretch sm:h-auto sm:min-w-[200px] sm:min-h-[450px] mq768:h-[550px] mq768:min-w-[385px]"
+          >
+            <div
+              class="self-stretch flex flex-col items-start justify-center gap-[20px]"
+            >
+              <div
+                class="self-stretch flex flex-col items-center justify-center"
+              >
+                <img
+                  class="relative w-[200px] h-[200px] overflow-hidden shrink-0"
+                  alt=""
+                  src="public/assets/strongEnglishGraphics.svg"
+                />
+              </div>
+              <div
+                class="self-stretch relative leading-[170%] mq350small:text-xs"
+              >
+                Filipinos are known for their proficiency in English, making
+                communication with English-speaking clients and customers
+                seamless.
+              </div>
+            </div>
+            <div
+              class="self-stretch flex flex-row items-center justify-center text-base font-plus-jakarta-sans"
+            >
+              <div
+                class="overflow-hidden flex flex-col items-center justify-center py-[5px] pr-[5px] pl-0"
+              >
+                <b class="relative leading-[170%] capitalize mq350small:text-xs"
+                  >03.</b
+                >
+              </div>
+              <b
+                class="flex-1 relative leading-[170%] capitalize mq350small:text-xs"
+                >Strong English Proficiency</b
+              >
+            </div>
+          </div>
+          <div
+            class="flex-1 bg-whitesmoke-200 box-border h-[515px] overflow-hidden flex flex-col items-start justify-between pt-[50px] px-[30px] pb-[30px] min-w-[385px] max-w-[400px] border-t-[5px] border-solid border-tomato-100 lg:max-w-[600px] sm:self-stretch sm:h-auto sm:min-w-[200px] sm:min-h-[450px] mq768:h-[550px] mq768:min-w-[385px]"
+          >
+            <div
+              class="self-stretch flex flex-col items-start justify-center gap-[20px]"
+            >
+              <div
+                class="self-stretch flex flex-col items-center justify-center"
+              >
+                <img
+                  class="relative w-[323px] h-[140px] overflow-hidden shrink-0 mq350small:w-[230px]"
+                  alt=""
+                  src="public/assets/businessProcessGraphics.svg"
+                />
+              </div>
+              <div
+                class="self-stretch relative leading-[170%] mq350small:text-xs"
+              >
+                The country has a well-established outsourcing industry, with
+                expertise in a wide range of services, such as call centers,
+                data entry, and software development.
+              </div>
+            </div>
+            <div
+              class="self-stretch flex flex-row items-center justify-center text-base font-plus-jakarta-sans"
+            >
+              <div
+                class="overflow-hidden flex flex-col items-center justify-center py-[5px] pr-[5px] pl-0"
+              >
+                <b class="relative leading-[170%] capitalize mq350small:text-xs"
+                  >04.</b
+                >
+              </div>
+              <b
+                class="flex-1 relative leading-[170%] capitalize mq350small:text-xs"
+                >Business Process Expertise</b
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Faqs -->
+      <section
+        class="self-stretch bg-whitesmoke-200 overflow-hidden flex flex-col items-center justify-center py-[100px] px-8 gap-[100px] text-center text-sm text-goldenrod-100 font-dm-sans sm:gap-[50px] sm:pt-[50px] sm:pb-[50px] sm:box-border sm:px-4"
+      >
+        <div
+          class="w-full overflow-hidden flex flex-col items-center justify-center gap-[20px] max-w-[1200px]"
+        >
+          <div
+            class="self-stretch overflow-hidden flex flex-col items-center justify-start gap-[20px]"
+          >
+            <b class="relative leading-[100%] uppercase sm:text-2xs"
+              >questions & answers</b
+            >
+            <h1
+              class="m-0 self-stretch relative text-31xl capitalize font-extrabold font-plus-jakarta-sans sm:text-13xl mq350small:text-xl mq640:text-25xl"
+            >
+              <span>see </span>
+              <span class="text-darkslateblue-100"
+                >frequently asked questions</span
+              >
+            </h1>
+          </div>
+          <div
+            class="w-full flex flex-col items-center justify-center max-w-[849px] text-xl text-darkslateblue-100"
+          >
+            <div
+              class="self-stretch relative leading-[170%] sm:text-base mq350small:text-xs"
+            >
+              If you have any more questions or require additional information,
+              please feel free to contact us. We're here to assist you in
+              finding the best talent or the ideal career opportunity.
+            </div>
+          </div>
+        </div>
+        <div
+          class="w-full overflow-hidden flex flex-row flex-wrap items-center justify-center gap-[20px] max-w-[1600px] text-left text-xl text-darkslateblue-100 font-plus-jakarta-sans"
+        >
+          <div
+            class="flex-1 rounded-3xs bg-white overflow-hidden flex flex-col items-start justify-start p-[30px] box-border gap-[20px] min-w-[520px] min-h-[373px] lg:min-w-[420px] md:min-w-[300px] md:min-h-[400px] mq350small:min-h-[200px] mq640:min-h-[200px]"
+          >
+            <div
+              class="rounded-81xl bg-tomato-200 w-[70px] h-[70px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-5 box-border mq350small:w-[60px] mq350small:h-[60px] mq350small:p-5 mq350small:box-border"
+            >
+              <img
+                class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
+                alt=""
+                src="public/assets/callUsToday.svg"
+              />
+            </div>
+            <b
+              class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+              >How can I contact your agency?</b
+            >
+            <div
+              class="self-stretch relative text-base leading-[170%] font-dm-sans mq350small:text-xs"
+            >
+              You can reach out to us through our Contact Us page on our website
+              or by emailing us at [ITO email address]. We're also available by
+              phone at [ITO phone number].
+            </div>
+          </div>
+          <div
+            class="flex-1 rounded-3xs bg-white overflow-hidden flex flex-col items-start justify-start p-[30px] box-border gap-[20px] min-w-[520px] min-h-[373px] lg:min-w-[420px] md:min-w-[300px] md:min-h-[400px] mq350small:min-h-[200px] mq640:min-h-[200px]"
+          >
+            <div
+              class="rounded-81xl bg-tomato-200 w-[70px] h-[70px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-[15px] box-border mq350small:w-[60px] mq350small:h-[60px] mq350small:p-5 mq350small:box-border"
+            >
+              <img
+                class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+                alt=""
+                src="public/assets/technicalsupport-2-2@2x.png"
+              />
+            </div>
+            <b
+              class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+              >Do you charge candidates for your services?</b
+            >
+            <div
+              class="self-stretch relative text-base leading-[170%] font-dm-sans mq350small:text-xs"
+            >
+              No, our services are completely free for job seekers. Our fees are
+              covered by the companies we work with.
+            </div>
+          </div>
+          <div
+            class="flex-1 rounded-3xs bg-white overflow-hidden flex flex-col items-start justify-start p-[30px] box-border gap-[20px] min-w-[520px] min-h-[373px] lg:min-w-[420px] md:min-w-[300px] md:min-h-[400px] mq350small:min-h-[200px] mq640:min-h-[200px]"
+          >
+            <div
+              class="rounded-81xl bg-tomato-200 w-[70px] h-[70px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-5 box-border mq350small:w-[60px] mq350small:h-[60px] mq350small:p-5 mq350small:box-border"
+            >
+              <img
+                class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+                alt=""
+                src="public/assets/user-1@2x.png"
+              />
+            </div>
+            <b
+              class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+              >Do you only work with local candidates?</b
+            >
+            <div
+              class="self-stretch relative text-base leading-[170%] font-dm-sans mq350small:text-xs"
+            >
+              Yes, we currently only source candidates from the Philippines.
+            </div>
+          </div>
+          <div
+            class="flex-1 rounded-3xs bg-white overflow-hidden flex flex-col items-start justify-start p-[30px] box-border gap-[20px] min-w-[520px] min-h-[373px] lg:min-w-[420px] md:min-w-[300px] md:min-h-[400px] mq350small:min-h-[200px] mq640:min-h-[200px]"
+          >
+            <div
+              class="rounded-81xl bg-tomato-200 w-[70px] h-[70px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-[15px] box-border mq350small:w-[60px] mq350small:h-[60px] mq350small:p-5 mq350small:box-border"
+            >
+              <img
+                class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+                alt=""
+                src="public/assets/insurance-1@2x.png"
+              />
+            </div>
+            <b
+              class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+              >What is your agency's privacy policy?</b
+            >
+            <div
+              class="self-stretch relative text-base leading-[170%] font-dm-sans mq350small:text-xs"
+            >
+              We take your privacy seriously and adhere to strict privacy
+              policies. You can find detailed information on how we handle data
+              in our [Privacy Policy] on our website.
+            </div>
+          </div>
+          <div
+            class="flex-1 rounded-3xs bg-white overflow-hidden flex flex-col items-start justify-start p-[30px] box-border gap-[20px] min-w-[520px] min-h-[373px] lg:min-w-[420px] md:min-w-[300px] md:min-h-[400px] mq350small:min-h-[200px] mq640:min-h-[200px]"
+          >
+            <div
+              class="rounded-81xl bg-tomato-200 w-[70px] h-[70px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-[15px] box-border mq350small:w-[60px] mq350small:h-[60px] mq350small:p-5 mq350small:box-border"
+            >
+              <img
+                class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+                alt=""
+                src="public/assets/informationtechnology-1@2x.png"
+              />
+            </div>
+            <b
+              class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+              >What industries and roles do you specialize in?</b
+            >
+            <div
+              class="self-stretch relative text-base leading-[170%] font-dm-sans mq350small:text-xs"
+            >
+              We specialize in the IT industry, and offer a variety of roles
+              such as a Software engineer, Network Admin, Database Admin,
+              Programmer, Full-Stack Developer, IT Security Analyst and other IT
+              specialized niches. Please check our website or contact us for
+              more details.
+            </div>
+          </div>
+          <div
+            class="flex-1 rounded-3xs bg-white overflow-hidden flex flex-col items-start justify-start p-[30px] box-border gap-[20px] min-w-[520px] min-h-[373px] lg:min-w-[420px] md:min-w-[300px] md:min-h-[400px] mq350small:min-h-[200px] mq640:min-h-[200px]"
+          >
+            <div
+              class="rounded-81xl bg-tomato-200 w-[70px] h-[70px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-[15px] box-border mq350small:w-[60px] mq350small:h-[60px] mq350small:p-5 mq350small:box-border"
+            >
+              <img
+                class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+                alt=""
+                src="public/assets/recruitment-3-1@2x.png"
+              />
+            </div>
+            <b
+              class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+              >How does your recruitment process work for clients?</b
+            >
+            <div
+              class="self-stretch relative text-base leading-[170%] font-dm-sans mq350small:text-xs"
+            >
+              Our process typically includes an initial consultation, job
+              requirement assessment, candidate sourcing, screening, and
+              interviews. We present you with the most qualified candidates, and
+              you make the final hiring decision.
+            </div>
+          </div>
+          <div
+            class="flex-1 rounded-3xs bg-white overflow-hidden flex flex-col items-start justify-start p-[30px] box-border gap-[20px] min-w-[520px] min-h-[373px] lg:min-w-[420px] md:min-w-[300px] md:min-h-[400px] mq350small:min-h-[200px] mq640:min-h-[200px]"
+          >
+            <div
+              class="rounded-81xl bg-tomato-200 w-[70px] h-[70px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-[15px] box-border mq350small:w-[60px] mq350small:h-[60px] mq350small:p-5 mq350small:box-border"
+            >
+              <img
+                class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+                alt=""
+                src="public/assets/timeline-1@2x.png"
+              />
+            </div>
+            <b
+              class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+              >How long does the recruitment process usually take?</b
+            >
+            <div
+              class="self-stretch relative text-base leading-[170%] font-dm-sans mq350small:text-xs"
+            >
+              The timeline can vary based on the specific role and candidate
+              availability, but we strive to expedite the process as much as
+              possible. We'll provide you with estimated time frames during our
+              initial consultation.
+            </div>
+          </div>
+          <div
+            class="flex-1 rounded-3xs bg-white overflow-hidden flex flex-col items-start justify-start p-[30px] box-border gap-[20px] min-w-[520px] min-h-[373px] lg:min-w-[420px] md:min-w-[300px] md:min-h-[400px] mq350small:min-h-[200px] mq640:min-h-[200px]"
+          >
+            <div
+              class="rounded-81xl bg-tomato-200 w-[70px] h-[70px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-[15px] box-border mq350small:w-[60px] mq350small:h-[60px] mq350small:p-5 mq350small:box-border"
+            >
+              <img
+                class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+                alt=""
+                src="public/assets/travelagency-1@2x.png"
+              />
+            </div>
+            <b
+              class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+              >What sets your agency apart from others?</b
+            >
+            <div
+              class="self-stretch relative text-base leading-[170%] font-dm-sans mq350small:text-xs"
+            >
+              Our agency stands out due to our deep industry expertise,
+              personalized approach, extensive network, commitment to
+              excellence, and long-term partnership focus. We're dedicated to
+              delivering exceptional service tailored to your unique needs.
+            </div>
+          </div>
+          <div
+            class="flex-1 rounded-3xs bg-white overflow-hidden flex flex-col items-start justify-start p-[30px] box-border gap-[20px] min-w-[520px] min-h-[373px] lg:min-w-[420px] md:min-w-[300px] md:min-h-[400px] mq350small:min-h-[200px] mq640:min-h-[200px]"
+          >
+            <div
+              class="rounded-81xl bg-tomato-200 w-[70px] h-[70px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-[15px] box-border mq350small:w-[60px] mq350small:h-[60px] mq350small:p-5 mq350small:box-border"
+            >
+              <img
+                class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+                alt=""
+                src="public/assets/submit-1@2x.png"
+              />
+            </div>
+            <b
+              class="self-stretch relative leading-[170%] capitalize mq350small:text-xs"
+              >How do I submit my resume or apply for a job through your
+              agency?</b
+            >
+            <div
+              class="self-stretch relative text-base leading-[170%] font-dm-sans mq350small:text-xs"
+            >
+              You can submit your resume or apply for a job by visiting our
+              website and checking the Contact Us page. You can also check job
+              postings on our partner site Oh! Jobs Philippines. We encourage
+              you to provide as much relevant information as possible.
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Let's Collaborate -->
+      <section
+        class="self-stretch bg-white overflow-hidden flex flex-col items-center justify-center relative text-left text-sm text-goldenrod-100 font-dm-sans"
+      >
+        <img
+          class="absolute my-0 mx-[!important] top-[0px] left-[0px] w-full h-[464px] overflow-hidden shrink-0 object-cover object-top z-[0] sm:h-[364px] mq350small:w-[350px] mq350small:h-[300px]"
+          alt=""
+          src="public/assets/collaborateImg.png"
+        />
+
+        <div
+          class="self-stretch flex flex-col items-center justify-center py-[100px] px-8 z-[1] sm:px-4"
+        >
+          <div
+            class="relative w-full flex flex-row flex-wrap items-start justify-center gap-[50px] max-w-[1200px] lg:gap-[50px] sm:w-full mq640:flex-col"
+          >
+            <div class="send-message-line absolute bottom-10 -right-44 z-10 lg:right-96 lg:bottom-5 mq1024:right-52 md:hidden">
+              <lottie-interactivity-scroll
+                class="w-full"
+                animation-url="public/assets/svg-lines/send-message-line.json"
+                visibility="[0.1, 0.25]"
+                frames="[0, 60]"
+                tag-name="send-message-line"
+              ></lottie-interactivity-scroll>
+            </div>
+            <div
+              class="flex-1 h-[670px] flex flex-col items-start justify-center gap-[60px] min-w-[575px] lg:h-[570px] lg:gap-[40px] lg:pt-[120px] mq350small:pt-[100px] lg:box-border sm:h-[400px] sm:min-w-[200px] mq350small:h-[300px] mq350small:gap-[40px] mq640:h-[530px] mq640:flex-col mq640:gap-[60px] mq640:min-w-[200px] mq640:flex-[unset] mq640:self-stretch mq768:h-[520px] mq768:gap-[0px]"
+            >
+              <div
+                class="self-stretch flex flex-col items-start justify-center gap-[20px]"
+              >
+                <b class="relative leading-[100%] uppercase sm:text-2xs"
+                  >let’s collaborate</b
+                >
+                <h1
+                  class="m-0 self-stretch relative text-45xl leading-[100%] capitalize font-extrabold font-plus-jakarta-sans text-white sm:text-13xl mq350small:text-xl mq640:text-25xl"
+                >
+                  <span>We're here to </span>
+                  <span class="relative text-goldenrod-100">
+                    <span>connect</span>
+                    <div class="connect-line absolute -z-10 -top-5 -left-14 w-[400px] mq640:w-[250px] mq640:-top-2 mq640:-left-7 sm:w-[200px] sm:-top-2 sm:-left-6 mq350small:w-[110px] mq350small:-left-3 mq350small:top-0">
+                      <lottie-interactivity-scroll
+                        class="w-full"
+                        animation-url="public/assets/svg-lines/connect-line.json"
+                        visibility="[0.2, 0.5]"
+                        frames="[0, 60]"
+                        tag-name="connect-line"
+                      ></lottie-interactivity-scroll>
+                    </div>
+                  </span>
+                  <span>, </span>
+                  <span class="relative text-goldenrod-100">
+                    <span>assist</span>
+                    <div class="assist-line absolute -z-10 -top-5 -right-14 w-[300px] mq1024:-right-64 mq640:w-[200px] mq640:-right-8 mq640:-top-2 sm:w-[150px] sm:-right-6 sm:-top-2 mq350small:w-[90px] mq350small:-top-1 mq350small:-right-3">
+                      <lottie-interactivity-scroll
+                        class="w-full"
+                        animation-url="public/assets/svg-lines/assist-line.json"
+                        visibility="[0.2, 0.5]"
+                        frames="[0, 60]"
+                        tag-name="assist-line"
+                      ></lottie-interactivity-scroll>
+                    </div>
+                  </span>
+                  <span>, and </span>
+                  <span class="relative text-goldenrod-100">
+                    <span>answer</span>
+                    <div class="answer-line absolute -z-10 -top-4 -right-12 w-[350px] mq640:w-[230px] mq640:-top-2 mq640:-right-6 sm:w-[180px] sm:-right-6 sm:-top-2 mq375:top-6 mq375:right-48 mq350small:w-[100px] mq350small:-right-2 mq350small:-top-1">
+                      <lottie-interactivity-scroll
+                        class="w-full"
+                        animation-url="public/assets/svg-lines/answer-line.json"
+                        visibility="[0.2, 0.5]"
+                        frames="[0, 60]"
+                        tag-name="answer-line"
+                      ></lottie-interactivity-scroll>
+                    </div>
+                  </span>
+                  <span> your questions</span>
+                </h1>
+              </div>
+              <div
+                class="self-stretch flex flex-col items-center justify-center text-13xl text-darkslateblue-100"
+              >
+                <h1
+                  class="m-0 self-stretch relative text-inherit leading-[150%] font-normal font-inherit sm:text-base mq350small:text-xs mq640:text-xl mq768:text-xl"
+                >
+                  Whether you're a job seeker looking for opportunities or an
+                  employer seeking top talent, our team is ready to assist you.
+                  Feel free to reach out to us, and we'll get back to you
+                  promptly.
+                </h1>
+              </div>
+            </div>
+            <form
+              class="flex-1 bg-white shadow-[0px_0px_5px_rgba(0,_0,_0,_0.15)] box-border max-h-[800px] overflow-hidden flex flex-col items-center justify-start p-[50px] relative gap-[20px] sm:gap-[10px] min-w-[575px] border-t-[5px] border-solid border-tomato-100 sm:p-[30px] sm:box-border sm:min-w-[200px] mq640:min-w-[200px] mq640:flex-[unset] mq640:self-stretch"
+            >
+              <img
+                class="absolute my-0 mx-[!important] right-[-69px] bottom-[-84px] w-[239px] h-[268px] object-cover z-[0]"
+                alt=""
+                src="public/assets/cornerImg@2x.png"
+              />
+
+              <div
+                class="self-stretch flex flex-row items-start justify-center z-[1]"
+              >
+                <select
+                  class="flex-1 bg-whitesmoke-100 overflow-hidden flex flex-col items-start justify-center p-2.5 border-[0.5px] border-solid border-darkslateblue-100 font-dm-sans text-sm text-darkslateblue-100"
+                  required="{true}"
+                  id="serviceType"
+                >
+                  <option value="" disabled selected>Type of Service/Deployment</option>
+                </select>
+              </div>
+              <div
+                class="self-stretch overflow-hidden flex flex-row items-start justify-center gap-[10px] z-[2] sm:flex-col"
+              >
+                <input
+                  class="font-dm-sans text-sm focus:outline-goldenrod-100 placeholder:text-darkslateblue-100 bg-whitesmoke-100 flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5 border-[0.5px] border-solid border-darkslateblue-100 sm:flex-[unset] sm:self-stretch"
+                  name="name"
+                  id="name"
+                  placeholder="Name"
+                  type="text"
+                />
+
+                <input
+                  class="font-dm-sans text-sm focus:outline-goldenrod-100 placeholder:text-darkslateblue-100 bg-whitesmoke-100 flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5 border-[0.5px] border-solid border-darkslateblue-100 sm:flex-[unset] sm:self-stretch"
+                  name="email"
+                  id="email"
+                  placeholder="Email Address"
+                  type="email"
+                />
+              </div>
+              <div
+                class="self-stretch overflow-hidden flex flex-row items-start justify-center gap-[10px] z-[3] sm:flex-col"
+              >
+                <input
+                  class="font-dm-sans text-sm focus:outline-goldenrod-100 placeholder:text-darkslateblue-100 bg-whitesmoke-100 flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5 border-[0.5px] border-solid border-darkslateblue-100 sm:flex-[unset] sm:self-stretch"
+                  name="phoneNumber"
+                  id="phoneNumber"
+                  placeholder="Phone Number"
+                  type="text"
+                />
+
+                <input
+                  class="font-dm-sans text-sm focus:outline-goldenrod-100 placeholder:text-darkslateblue-100 bg-whitesmoke-100 flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5 border-[0.5px] border-solid border-darkslateblue-100 sm:flex-[unset] sm:self-stretch"
+                  name="companyName"
+                  id="companyName"
+                  placeholder="Company Name"
+                  type="text"
+                />
+              </div>
+              <div
+                class="self-stretch overflow-hidden flex flex-row items-center justify-start gap-[10px] z-[4] sm:flex-col"
+              >
+                <select
+                  class="font-dm-sans text-sm focus:outline-goldenrod-100 text-darkslateblue-100 flex-1 bg-whitesmoke-100 overflow-hidden flex flex-row items-center justify-between p-2.5 border-[0.5px] border-solid border-darkslateblue-100 sm:flex-[unset] sm:self-stretch"
+                  required="{true}"
+                  id="industry"
+                >
+                  <option value="" disabled selected>Select Industry</option>
+                </select>
+                <select
+                  class="font-dm-sans text-sm focus:outline-goldenrod-100 text-darkslateblue-100 flex-1 bg-whitesmoke-100 overflow-hidden flex flex-row items-center justify-between p-2.5 border-[0.5px] border-solid border-darkslateblue-100 sm:flex-[unset] sm:self-stretch"
+                  required="{true}"
+                  id="companySize"
+                >
+                  <option value="" disabled selected>Select Company Size</option>
+                </select>
+              </div>
+              <div
+                class="self-stretch bg-whitesmoke-100 overflow-hidden flex flex-col items-start justify-center z-[5]"
+              >
+                <select
+                  class="font-dm-sans text-sm focus:outline-goldenrod-100 text-darkslateblue-100 bg-whitesmoke-100 self-stretch overflow-hidden flex flex-row items-center justify-between p-2.5 border-[0.5px] border-solid border-darkslateblue-100"
+                  id="hearAboutUs"
+                >
+                  <option value="" disabled selected>Where did your hear about us?</option>
+                </select>
+              </div>
+              <textarea
+                class="focus:outline-goldenrod-100 text-darkslateblue-100 border-darkslateblue-100 bg-whitesmoke-100 font-dm-sans text-sm self-stretch overflow-hidden flex flex-row items-start justify-center z-[6] h-[150px] p-2.5"
+                placeholder="Message"
+                required="{true}"
+                id="message"
+              >
+              </textarea>
+              <div
+                class="self-stretch overflow-hidden flex flex-row items-center justify-start z-[7]"
+              >
+                <button
+                  class="cursor-pointer [border:none] py-[15px] px-[30px] hover:bg-[#E93C32] bg-tomato-100 rounded-81xl overflow-hidden flex flex-row items-center justify-center gap-[10px] sm:py-2.5 sm:px-5 sm:box-border mq350small:py-[7px] mq350small:px-5 mq350small:box-border"
+                  id="messageBtn"
+                >
+                  <b
+                    class="relative text-base capitalize font-plus-jakarta-sans text-white text-left sm:text-xs mq350small:text-xs"
+                    >send a message</b
+                  >
+                  <div
+                    class="rounded-31xl bg-gray w-[30px] h-[30px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-[7px] box-border sm:w-[25px] sm:h-[25px] mq350small:w-[25px]"
+                  >
+                    <img
+                      class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+                      alt=""
+                      src="public/assets/sendMessage@2x.png"
+                    />
+                  </div>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+      <!-- Footer -->
+      <section
+        class="self-stretch bg-white overflow-hidden flex flex-col items-center justify-start relative gap-[10px]"
+      >
+        <footer
+          class="self-stretch flex flex-col items-center justify-center py-[100px] px-8 bg-[url('public/assets/innercontainer@3x.png')] bg-cover bg-no-repeat bg-[top] z-[0] text-left text-base text-white font-plus-jakarta-sans sm:pt-[50px] sm:pb-[50px] sm:box-border sm:px-4 mq350small:box-border"
+        >
+          <div
+            class="w-full flex flex-col items-center justify-center max-w-[1200px]"
+          >
+            <div
+              class="self-stretch overflow-hidden flex flex-row items-center justify-between pt-0 px-0 pb-[50px] border-b-[0.3px] border-solid border-white sm:flex-col sm:gap-[30px] mq640:flex-col mq640:gap-[30px]"
+            >
+              <div
+                class="flex-1 h-[50px] flex flex-col items-start justify-center sm:items-center sm:justify-center sm:flex-[unset] sm:self-stretch mq640:h-[50px] mq640:items-center mq640:justify-center mq640:flex-[unset] mq640:self-stretch"
+              >
+                <img
+                  class="relative w-[200px] h-[50px] object-cover mq640:w-[200px] mq640:h-[50px]"
+                  alt=""
+                  src="public/assets/sample_logo_footer@2x.png"
+                />
+              </div>
+              <div
+                class="overflow-hidden flex flex-row items-center justify-center py-2.5 pr-0 pl-2.5 gap-[30px] sm:self-stretch sm:w-auto"
+              >
+                <a 
+                  href="contact-us.html"
+                  class="flex flex-col items-center justify-center py-0 px-[5px] no-underline text-white"
+                >
+                  <b
+                    class="relative capitalize sm:text-xs sm:text-center mq640:text-base"
+                    >contact us</b
+                  >
+                </a>
+                <a
+                  href="#"
+                  class="flex flex-col items-center justify-center py-0 px-[5px] no-underline text-white"
+                >
+                  <b
+                    class="relative capitalize sm:text-xs sm:text-center mq640:text-base"
+                    >terms and conditions</b
+                  >
+                </a>
+                <a
+                  href="#"
+                  class="flex flex-col items-center justify-center py-0 px-[5px] no-underline text-white"
+                >
+                  <b
+                    class="relative capitalize sm:text-xs sm:text-center mq640:text-base"
+                    >privacy policy</b
+                  >
+                </a>
+              </div>
+            </div>
+            <div
+              class="self-stretch overflow-hidden flex flex-col items-center justify-center pt-[50px] px-0 pb-0 text-5xl text-goldenrod-100"
+            >
+              <div
+                class="self-stretch overflow-hidden flex flex-row flex-wrap items-center justify-between sm:flex-col sm:gap-[30px] mq640:flex-col mq640:gap-[30px]"
+              >
+                <div
+                  class="flex-1 flex flex-col items-start justify-center gap-[10px] sm:items-center sm:justify-center sm:flex-[unset] sm:self-stretch mq640:self-stretch mq640:w-auto mq640:items-center mq640:justify-center mq640:flex-[unset]"
+                >
+                  <h3
+                    class="m-0 relative text-inherit capitalize font-bold font-inherit md:text-xl"
+                  >
+                    need help?
+                  </h3>
+                  <div
+                    class="flex flex-row items-center justify-start gap-[15px] text-xl text-aliceblue font-dm-sans"
+                  >
+                    <img
+                      class="relative w-5 h-5 overflow-hidden shrink-0 md:w-[15px] md:h-[15px]"
+                      alt=""
+                      src="public/assets/phone.svg"
+                    />
+
+                    <div
+                      class="flex flex-row items-center justify-start gap-[5px]"
+                    >
+                      <div class="relative uppercase md:text-sm">call us:</div>
+                      <div class="relative md:text-sm">+63 917 123 4567</div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col items-start justify-center gap-[10px] sm:self-stretch sm:w-auto sm:items-center sm:justify-center mq640:self-stretch mq640:w-auto mq640:items-center mq640:justify-center"
+                >
+                  <h3
+                    class="m-0 relative text-inherit capitalize font-bold font-inherit md:text-xl"
+                  >
+                    Email:
+                  </h3>
+                  <div
+                    class="flex flex-row items-center justify-center gap-[15px] text-xl text-aliceblue font-dm-sans"
+                  >
+                    <img
+                      class="relative w-[30px] h-[30px] overflow-hidden shrink-0 md:w-5 md:h-5"
+                      alt=""
+                      src="public/assets/email.svg"
+                    />
+
+                    <div class="relative md:text-sm">
+                      info@itodirectplus.com
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex-1 flex flex-col items-end justify-center gap-[10px] sm:items-center sm:justify-center sm:flex-[unset] sm:self-stretch mq640:self-stretch mq640:w-auto mq640:items-center mq640:justify-center mq640:flex-[unset]"
+                >
+                  <h3
+                    class="m-0 relative text-inherit capitalize font-bold font-inherit md:text-xl"
+                  >
+                    follow us
+                  </h3>
+                  <div
+                    class="self-stretch overflow-hidden flex flex-row items-end justify-end gap-[20px] sm:items-end sm:justify-center mq640:items-end mq640:justify-center"
+                  >
+                    <a href="#">
+                      <img
+                        class="relative w-5 h-5 object-cover md:w-[15px] md:h-[15px]"
+                        alt=""
+                        src="public/assets/facebook@2x.png"
+                      />
+                    </a>
+
+                    <a href="#">
+                      <img
+                        class="relative w-[27px] h-[23px] object-cover md:w-5 md:h-[17px]"
+                        alt=""
+                        src="public/assets/linkedin@2x.png"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <button
+          class="cursor-pointer [border:none] p-5 bg-[transparent] my-0 mx-[!important] absolute right-[0px] bottom-[0px] flex flex-col items-center justify-center z-[1]"
+        >
+          <div
+            id="backTopBtn"
+            class="rounded-81xl bg-tomato-100 shadow-[0px_4px_4px_rgba(0,_0,_0,_0.15)] w-[60px] h-[60px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-[15px] box-border cursor-pointer lg:w-[50px] lg:h-[50px] md:w-[40px] md:h-[40px]"
+          >
+            <img
+              class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
+              alt=""
+              src="public/assets/chevronUp.svg"
+            />
+          </div>
+        </button>
+      </section>
+    </div>
+    <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@1.5.7/dist/lottie-player.js"></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+	<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.28/bundled/lenis.min.js"></script> 
+    <script src="public/scripts/menu.js"></script>
+    <script src="public/scripts/scrollTrigger.js"></script>
+    <script src="public/scripts/lineAnimation.js"></script>
+	<script>
+		const lenis = new Lenis()
+
+		lenis.on('scroll', (e) => {
+		  console.log(e)
+		})
+
+		function raf(time) {
+		  lenis.raf(time)
+		  requestAnimationFrame(raf)
+		}
+
+		requestAnimationFrame(raf)
+	</script>
+  </body>
+</html>

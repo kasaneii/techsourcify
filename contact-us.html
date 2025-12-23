@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script>
+	tailwind.config = {
+	  theme: {
+		extend: {
+		  colors: {
+			white: "#fff",
+			tomato: {
+			  "100": "#ef4c43",
+			  "200": "rgba(239, 76, 67, 0.2)",
+			},
+			goldenrod: {
+			  "100": "#f4b210",
+			  "200": "rgba(244, 178, 16, 0.3)",
+			  "300": "rgba(244, 178, 16, 0.2)",
+			},
+			aliceblue: "#f2f6ff",
+			gray: "rgba(255, 255, 255, 0.7)",
+			whitesmoke: {
+			  "100": "#f7f7f7",
+			  "200": "#f6f6f6",
+			},
+			darkslateblue: {
+			  "100": "#1f2850",
+			  "200": "rgba(31, 40, 80, 0.1)",
+			},
+			gainsboro: "#e4e4e4",
+			darkgray: "#9a9a9a",
+			silver: "#b9b9b9",
+		  },
+		  spacing: {},
+		  fontFamily: {
+			"plus-jakarta-sans": "'Plus Jakarta Sans'",
+			"dm-sans": "'DM Sans'",
+		  },
+		  borderRadius: {
+			"81xl": "100px",
+			"31xl": "50px",
+			"3xs": "10px",
+			"8xs": "5px",
+			"481xl": "500px",
+			xl: "20px",
+			mini: "15px",
+		  },
+		},
+		fontSize: {
+		  "5xl": "24px",
+		  xl: "20px",
+		  sm: "14px",
+		  base: "16px",
+		  xs: "12px",
+		  "13xl": "32px",
+		  "45xl": "64px",
+		  "25xl": "44px",
+		  "2xs": "11px",
+		  lg: "18px",
+		  "11xl": "30px",
+		  "29xl": "48px",
+		  smi: "13px",
+		  "31xl": "50px",
+		  "9xl": "28px",
+		  "17xl": "36px",
+		  "41xl": "60px",
+		  inherit: "inherit",
+		},
+		screens: {
+		  lg: {
+			max: "1200px",
+		  },
+		  md: {
+			max: "960px",
+		  },
+		  sm: {
+			max: "440px",
+		  },
+		  mq350small: {
+			raw: "screen and (max-width: 350px)",
+		  },
+		  mq640: {
+			raw: "screen and (max-width: 640px) and (min-width: 441px)",
+		  },
+		  mq768: {
+			raw: "screen and (max-width: 768px) and (min-width: 641px)",
+		  },
+		  mq1366: {
+			raw: "screen and (max-width: 1366px) and (min-width: 1201px)",
+		  },
+		},
+	  },
+	  corePlugins: {
+		preflight: false,
+	  }
+	}
+	</script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus Jakarta Sans:wght@700;800&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM Sans:wght@400;500;700&display=swap"
+    />
+	<link rel="stylesheet" href="./public/css/global.css" />	
+  </head>
+  <body>
+    <div
+      class="relative bg-white w-full flex flex-col items-center justify-start"
+    >
+      <div class="sidenav absolute bg-transparent top-0 left-0 w-full justify-end z-10 opacity-0 hidden transition ease-in-out duration-300">
+        <div class="relative bg-white w-[40%] mq640:w-[50%] sm:w-full h-screen hidden md:flex flex-col items-center px-[32px] sm:px-[16px] overflow-hidden">
+          <div class="w-full flex justify-between px-[32px] sm:px-[16px] py-[30px]">
+            <img
+              class="w-[200px] mq640:w-[150px] object-contain sm:w-[120px]"
+              alt=""
+              src="public/assets/sample_logo@2x.png"
+            />
+            <button
+              id="closeBtn"
+              class="rounded-81xl bg-aliceblue hover:bg-[#E5EDFF] flex flex-col items-center justify-center w-[40px] h-[40px] py-3.5 px-3.5"
+            >
+              <img 
+                class="object-contain w-full h-full"
+                alt=""
+                src="public/assets/closeIcon.png"
+              />
+            </button>
+          </div>
+          <div class="flex flex-col justify-between w-full h-full px-[32px] sm:px-[16px] font-plus-jakarta-sans text-center items-center">
+            <div class="w-full flex flex-col gap-[30px] items-center pt-[30px]">
+              <div class="w-full flex flex-col gap-[20px] items-center">
+                <a href="./index.html"
+                    class="cursor-pointer [border:none] py-2.5 px-[30px] bg-white hover:bg-goldenrod-100 hover:text-white text-darkslateblue-100 rounded-xl flex flex-col items-center justify-center no-underline"
+                    id="home"
+                  >
+                    <b
+                      class="self-stretch relative text-base capitalize font-plus-jakarta-sans text-center"
+                      >home</b
+                    >
+                  </a>
+                  <a href="./our-services.html"
+                    class="cursor-pointer hover:bg-goldenrod-100 hover:text-white text-darkslateblue-100 rounded-xl flex flex-col items-center justify-center py-2.5 px-[30px] no-underline"
+                  >
+                    <b class="self-stretch relative capitalize">our services</b>
+                  </a>
+                  <a href="./index.html#why-ITO"
+                    class="cursor-pointer hover:bg-goldenrod-100 hover:text-white text-darkslateblue-100 rounded-xl flex flex-col items-center justify-center py-2.5 px-[30px] no-underline"
+                  >
+                    <b class="self-stretch relative capitalize">why ITO?</b>
+                  </a>
+                  <a href="./index.html#how-it-works"
+                    class="cursor-pointer hover:bg-goldenrod-100 hover:text-white text-darkslateblue-100 rounded-xl flex flex-col items-center justify-center py-2.5 px-[30px] no-underline"
+                  >
+                    <b class="self-stretch relative capitalize">how it works</b>
+                  </a>
+              </div>
+              <a href="./contact-us.html"
+                  class="cursor-pointer rounded-31xl hover:bg-[#E93C32] bg-tomato-100 text-white w-[187px] overflow-hidden shrink-0 flex flex-row items-center justify-center py-2.5 px-[30px] box-border gap-[10px] no-underline"
+              >
+                <b class="relative capitalize">contact us</b>
+                <div
+                  class="rounded-31xl bg-gray w-[30px] h-[30px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-[7px] box-border"
+                >
+                  <img
+                    class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
+                    alt=""
+                    src="public/assets/telephone.svg"
+                  />
+                </div>
+              </a>
+            </div>
+            <div class="w-full flex justify-between z-10 py-[30px]">
+              <a href="#" class="no-underline text-base capitalize text-darkslateblue-100 rounded-81xl bg-aliceblue hover:bg-[#E5EDFF] font-plus-jakarta-sans flex flex-col items-center justify-center py-2.5 px-5 mq350small:text-sm">Facebook</a>
+              <a href="#" class="no-underline text-base capitalize text-darkslateblue-100 rounded-81xl bg-aliceblue hover:bg-[#E5EDFF] font-plus-jakarta-sans flex flex-col items-center justify-center py-2.5 px-5 mq350small:text-sm">LinkedIn</a>
+            </div>
+          </div>
+          <img
+            class="absolute bottom-0 left-0 h-[50%] shrink-0 object-cover z-0"
+            alt=""
+            src="public/assets/heroBannerLeft@2x.png"
+          />
+        </div>
+      </div>
+      <header
+        id="navbar"
+        class="self-stretch bg-white sticky top-0 z-10 flex flex-row items-center justify-center py-[30px] sm:py-4 px-8 sm:px-4 text-left text-base text-white font-plus-jakarta-sans mq350small:py-[15px] mq350small:box-border"
+      >
+        <div
+          class="flex-1 flex flex-row items-center justify-between max-w-[1200px]"
+        >
+
+          <a href="index.html">
+            <img
+              class="max-h-full w-[200px] object-cover mq350small:w-[120px]"
+              alt=""
+              src="public/assets/sample_logo@2x.png"
+            />
+          </a>
+
+          <div class="flex flex-row items-center justify-center gap-[30px]">
+            <nav
+              class="m-0 overflow-hidden flex flex-row items-center justify-center py-2.5 pr-0 pl-2.5 gap-[10px] text-center text-base text-darkslateblue-100 font-plus-jakarta-sans"
+            >
+              <a href="./index.html"
+                class="cursor-pointer [border:none] py-2.5 px-[30px] bg-white hover:bg-goldenrod-100 hover:text-white text-darkslateblue-100 rounded-xl flex flex-col items-center justify-center md:hidden no-underline"
+                id="home"
+              >
+                <b
+                  class="self-stretch relative text-base capitalize font-plus-jakarta-sans text-center"
+                  >home</b
+                >
+              </a>
+              <a href="./our-services.html"
+                class="cursor-pointer hover:bg-goldenrod-100 hover:text-white text-darkslateblue-100 rounded-xl flex flex-col items-center justify-center py-2.5 px-5 md:hidden no-underline"
+              >
+                <b class="self-stretch relative capitalize">our services</b>
+              </a>
+              <a href="./index.html#why-ITO"
+                class="cursor-pointer hover:bg-goldenrod-100 hover:text-white text-darkslateblue-100 rounded-xl flex flex-col items-center justify-center py-2.5 px-5 md:hidden no-underline"
+              >
+                <b class="self-stretch relative capitalize">why ITO?</b>
+              </a>
+              <a href="./index.html#how-it-works"
+                class="cursor-pointer hover:bg-goldenrod-100 hover:text-white text-darkslateblue-100 rounded-xl flex flex-col items-center justify-center py-2.5 px-5 md:hidden no-underline"
+              >
+                <b class="self-stretch relative capitalize">how it works</b>
+              </a>
+              <button
+                id="menuBtn"
+                class="rounded-81xl bg-aliceblue hover:bg-[#E5EDFF] font-plus-jakarta-sans flex-col items-center justify-center py-2.5 px-5 hidden md:flex"
+              >
+                <b class="text-base self-stretch relative capitalize mq350small:text-sm"
+                  >menu</b
+                >
+              </button>
+            </nav>
+            <a href="./contact-us.html"
+              class="cursor-pointer rounded-31xl hover:bg-[#E93C32] bg-tomato-100 text-white w-[187px] overflow-hidden shrink-0 flex flex-row items-center justify-center py-2.5 px-[30px] box-border gap-[10px] sm:hidden no-underline"
+            >
+              <b class="relative capitalize">contact us</b>
+              <div
+                class="rounded-31xl bg-gray w-[30px] h-[30px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-[7px] box-border"
+              >
+                <img
+                  class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
+                  alt=""
+                  src="public/assets/telephone.svg"
+                />
+              </div>
+            </a>
+          </div>
+        </div>
+      </header>
+      <section
+        class="self-stretch h-[600px] overflow-hidden shrink-0 flex flex-col items-center justify-center bg-[url('public/assets/ourServicesBgImg.jpg')] bg-cover bg-no-repeat bg-[center] text-center text-41xl text-goldenrod-100 font-dm-sans md:h-[500px] sm:h-[500px] mq350small:self-stretch mq350small:w-auto mq350small:h-[300px] mq768:h-[400px]"
+      >
+        <div
+          class="self-stretch flex-1 flex flex-col items-center justify-center py-[100px] px-8 mq350small:pl-4 mq350small:pr-4 mq350small:box-border"
+        >
+          <div
+            class="w-full overflow-hidden flex flex-col items-center justify-center gap-[30px] max-w-[1200px]"
+          >
+            <h1
+              class="m-0 self-stretch relative text-inherit leading-[120%] font-bold font-inherit md:text-31xl sm:text-13xl mq350small:text-xl mq640:text-25xl mq768:text-13xl"
+            >
+              Let’s Collaborate
+            </h1>
+            <h2
+              class="m-0 self-stretch relative text-11xl font-normal font-inherit text-white md:text-5xl sm:text-base mq350small:text-xs mq640:text-lg"
+            >
+              We're here to connect, assist, and answer your questions. Whether
+              you're a job seeker looking for opportunities or an employer
+              seeking top talent, our team is ready to assist you. Feel free to
+              reach out to us, and we'll get back to you promptly.
+            </h2>
+          </div>
+        </div>
+      </section>
+      <section
+        class="self-stretch bg-white overflow-hidden flex flex-col items-center justify-start py-[100px] px-8 relative gap-[100px] text-center text-5xl text-darkslateblue-100 font-dm-sans sm:pt-[50px] sm:pb-[50px] sm:box-border mq350small:gap-[50px] mq350small:pl-4 mq350small:pr-4 mq350small:box-border"
+      >
+        <img
+          class="self-stretch absolute my-0 mx-[!important] bottom-[0px] left-[0px] max-w-full overflow-hidden h-[674px] shrink-0 object-cover z-[0] md:h-[500px] sm:h-[400px]"
+          alt=""
+          src="public/assets/contactUsBgImg@2x.png"
+        />
+
+        <div
+          class="w-full overflow-hidden flex flex-col items-center justify-start max-w-[1200px] z-[1]"
+        >
+          <div
+            class="self-stretch overflow-hidden flex flex-row flex-wrap items-center justify-center gap-[50px] md:gap-[30px] sm:flex-col"
+          >
+            <div
+              class="flex-1 rounded-3xs bg-whitesmoke-200 h-[273px] overflow-hidden flex flex-col items-center justify-start p-[30px] box-border gap-[20px] min-w-[300px] max-w-[366.6700134277344px] mq640:min-w-[250px] mq640:max-w-[300px] mq350small:min-w-[288px]"
+            >
+              <div
+                class="rounded-81xl bg-tomato-200 w-20 h-20 overflow-hidden shrink-0 flex flex-col items-center justify-center p-[25px] box-border mq350small:w-[60px] mq350small:h-[60px] mq350small:p-5 mq350small:box-border"
+              >
+                <img
+                  class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
+                  alt=""
+                  src="public/assets/callUsToday.svg"
+                />
+              </div>
+              <h3
+                class="m-0 relative text-inherit capitalize font-bold font-inherit mq350small:text-xl"
+              >
+                call us today
+              </h3>
+              <div
+                class="relative text-xl capitalize text-silver md:text-base mq350small:text-base"
+              >
+                +63 917 123 4567
+              </div>
+            </div>
+            <div
+              class="flex-1 rounded-3xs bg-whitesmoke-200 h-[273px] overflow-hidden flex flex-col items-center justify-start p-[30px] box-border gap-[20px] min-w-[300px] max-w-[366.6700134277344px] mq640:min-w-[250px] mq640:max-w-[300px] mq350small:min-w-[288px]"
+            >
+              <div
+                class="rounded-81xl bg-tomato-200 w-20 h-20 overflow-hidden shrink-0 flex flex-col items-center justify-center p-[25px] box-border mq350small:w-[60px] mq350small:h-[60px] mq350small:p-5 mq350small:box-border"
+              >
+                <img
+                  class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+                  alt=""
+                  src="public/assets/sendAnEmail@2x.png"
+                />
+              </div>
+              <h3
+                class="m-0 relative text-inherit capitalize font-bold font-inherit mq350small:text-xl"
+              >
+                send an email
+              </h3>
+              <div
+                class="relative text-xl text-silver md:text-base mq350small:text-base"
+              >
+                info@itodirectplus.com
+              </div>
+            </div>
+            <div
+              class="flex-1 rounded-3xs bg-whitesmoke-200 h-[273px] overflow-hidden flex flex-col items-center justify-start p-[30px] box-border gap-[20px] min-w-[300px] max-w-[366.6700134277344px] mq640:min-w-[250px] mq640:max-w-[300px] mq350small:min-w-[288px]"
+            >
+              <div
+                class="rounded-81xl bg-tomato-200 w-20 h-20 overflow-hidden shrink-0 flex flex-col items-center justify-center p-[25px] box-border mq350small:w-[60px] mq350small:h-[60px] mq350small:p-5 mq350small:box-border"
+              >
+                <img
+                  class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+                  alt=""
+                  src="public/assets/followUs@2x.png"
+                />
+              </div>
+              <h3
+                class="m-0 relative text-inherit capitalize font-bold font-inherit mq350small:text-xl"
+              >
+                follow us
+              </h3>
+              <div
+                class="self-stretch flex flex-col items-center justify-center gap-[10px] text-xl"
+              >
+                <a
+                  href="#"
+                  class="self-stretch relative md:text-base mq350small:text-base text-silver no-underline"
+                >
+                  linkedin.com/itodirectplus
+                </a>
+                <a
+                  href="#"
+                  class="self-stretch relative md:text-base mq350small:text-base text-silver no-underline"
+                >
+                  facebook.com/itodirectplus
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="w-full overflow-hidden flex flex-col items-center justify-start max-w-[1200px] z-[2]"
+        >
+          <form
+            class="self-stretch bg-whitesmoke-200 shadow-[0px_0px_5px_rgba(0,_0,_0,_0.15)] overflow-hidden flex flex-col items-center justify-start p-[50px] gap-[50px] border-t-[5px] border-solid border-tomato-100 sm:gap-[30px] sm:p-[30px] sm:box-border sm:min-w-[200px] mq640:min-w-[200px]"
+          >
+            <h1
+              class="m-0 relative text-17xl capitalize font-extrabold font-plus-jakarta-sans text-goldenrod-100 text-center sm:text-5xl mq350small:text-xl"
+            >
+              get in touch with us
+            </h1>
+            <div
+              class="self-stretch flex flex-col items-center justify-start gap-[20px] sm:gap-[10px]"
+            >
+              <select
+                class="self-stretch bg-white h-[38px] overflow-hidden shrink-0 flex flex-col items-start justify-center p-2.5 font-dm-sans text-sm text-darkslateblue-100 focus:outline-goldenrod-100"
+                required="{true}"
+                id="serviceType"
+              >
+                <option value="" disabled selected>Type of Service/Deployment</option>
+              </select>
+              <div
+                class="self-stretch overflow-hidden flex flex-row items-start justify-center gap-[10px] sm:flex-col"
+              >
+                <input
+                  class="focus:outline-goldenrod-100 placeholder:text-darkslateblue-100 [border:none] font-dm-sans text-sm bg-white flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5 sm:flex-[unset] sm:self-stretch"
+                  name="name"
+                  id="name"
+                  placeholder="Name"
+                  type="text"
+                />
+
+                <input
+                  class="focus:outline-goldenrod-100 placeholder:text-darkslateblue-100 [border:none] font-dm-sans text-sm bg-white flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5 sm:flex-[unset] sm:self-stretch"
+                  name="email"
+                  id="email"
+                  placeholder="Email Address"
+                  type="email"
+                />
+              </div>
+              <div
+                class="self-stretch overflow-hidden flex flex-row items-start justify-center gap-[10px] sm:flex-col"
+              >
+                <input
+                  class="focus:outline-goldenrod-100 placeholder:text-darkslateblue-100 [border:none] font-dm-sans text-sm bg-white flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5 sm:flex-[unset] sm:self-stretch"
+                  name="phoneNumber"
+                  id="phoneNumber"
+                  placeholder="Phone Number"
+                  type="text"
+                />
+
+                <input
+                  class="focus:outline-goldenrod-100 placeholder:text-darkslateblue-100 [border:none] font-dm-sans text-sm bg-white flex-1 overflow-hidden flex flex-col items-start justify-center p-2.5 sm:flex-[unset] sm:self-stretch"
+                  name="companyName"
+                  id="companyName"
+                  placeholder="Company Name"
+                  type="text"
+                />
+              </div>
+              <div
+                class="self-stretch overflow-hidden flex flex-row items-center justify-start gap-[10px] sm:flex-col"
+              >
+                <select
+                  class="flex-1 bg-white overflow-hidden flex flex-row items-center justify-between p-2.5 sm:flex-[unset] sm:self-stretch font-dm-sans text-sm text-darkslateblue-100 focus:outline-goldenrod-100"
+                  required="{true}"
+                  id="industry"
+                >
+                  <option value="" disabled selected>Select Industry</option>
+                </select>
+                <select
+                  class="flex-1 bg-white overflow-hidden flex flex-row items-center justify-between p-2.5 sm:flex-[unset] sm:self-stretch font-dm-sans text-sm text-darkslateblue-100 focus:outline-goldenrod-100"
+                  required="{true}"
+                  id="companySize"
+                >
+                  <option value="" disabled selected>Select Company Size</option>
+                </select>
+              </div>
+              <div
+                class="self-stretch bg-white overflow-hidden flex flex-col items-start justify-center"
+              >
+                <select
+                  class="self-stretch overflow-hidden flex flex-row items-center justify-between p-2.5 font-dm-sans text-sm text-darkslateblue-100 focus:outline-goldenrod-100"
+                  id="hearAboutUs"
+                >
+                  <option value="" disabled selected>Where did you hear about us?</option>
+                </select>
+              </div>
+              <textarea
+                class="p-2.5 [border:none] bg-white font-dm-sans text-sm self-stretch overflow-hidden flex flex-row items-start justify-center h-[150px] focus:outline-goldenrod-100"
+                placeholder="Message"
+                required="{true}"
+                id="message"
+              >
+              </textarea>
+              <div
+                class="self-stretch overflow-hidden flex flex-row items-center justify-center"
+              >
+                <button
+                  class="cursor-pointer [border:none] py-[15px] px-[30px] hover:bg-[#E93C32] bg-tomato-100 rounded-81xl overflow-hidden flex flex-row items-center justify-center gap-[10px] sm:py-2.5 sm:px-5 sm:box-border mq350small:py-[7px] mq350small:px-5 mq350small:box-border"
+                  id="messageBtn"
+                >
+                  <b
+                    class="relative text-base capitalize font-plus-jakarta-sans text-white text-left sm:text-xs mq350small:text-xs"
+                    >send a message</b
+                  >
+                  <div
+                    class="rounded-31xl bg-gray w-[30px] h-[30px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-[7px] box-border sm:w-[25px] sm:h-[25px] mq350small:w-[25px]"
+                  >
+                    <img
+                      class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full object-cover"
+                      alt=""
+                      src="public/assets/sendMessage@2x.png"
+                    />
+                  </div>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+      <section
+        class="self-stretch bg-white overflow-hidden flex flex-col items-center justify-start relative gap-[10px]"
+      >
+        <footer
+          class="self-stretch flex flex-col items-center justify-center py-[100px] px-8 bg-[url('public/assets/innercontainer@3x.png')] bg-cover bg-no-repeat bg-[top] z-[0] text-left text-base text-white font-plus-jakarta-sans sm:pt-[50px] sm:pb-[50px] sm:box-border mq350small:pl-4 mq350small:pr-4 mq350small:box-border"
+        >
+          <div
+            class="w-full flex flex-col items-center justify-center max-w-[1200px]"
+          >
+            <div
+              class="self-stretch overflow-hidden flex flex-row items-center justify-between pt-0 px-0 pb-[50px] border-b-[0.3px] border-solid border-white sm:flex-col sm:gap-[30px] mq640:flex-col mq640:gap-[30px]"
+            >
+              <div
+                class="flex-1 h-[50px] flex flex-col items-start justify-center sm:items-center sm:justify-center sm:flex-[unset] sm:self-stretch mq640:h-[50px] mq640:items-center mq640:justify-center mq640:flex-[unset] mq640:self-stretch"
+              >
+                <img
+                  class="relative w-[200px] h-[50px] object-cover mq640:w-[200px] mq640:h-[50px]"
+                  alt=""
+                  src="public/assets/sample_logo_footer@2x.png"
+                />
+              </div>
+              <div
+                class="overflow-hidden flex flex-row items-center justify-center py-2.5 pr-0 pl-2.5 gap-[30px] sm:self-stretch sm:w-auto"
+              >
+                <a 
+                  href="contact-us.html"
+                  class="flex flex-col items-center justify-center py-0 px-[5px] no-underline text-white"
+                >
+                  <b
+                    class="relative capitalize sm:text-xs sm:text-center mq640:text-base"
+                    >contact us</b
+                  >
+                </a>
+                <a
+                  href="#"
+                  class="flex flex-col items-center justify-center py-0 px-[5px] no-underline text-white"
+                >
+                  <b
+                    class="relative capitalize sm:text-xs sm:text-center mq640:text-base"
+                    >terms and conditions</b
+                  >
+                </a>
+                <a
+                  href="#"
+                  class="flex flex-col items-center justify-center py-0 px-[5px] no-underline text-white"
+                >
+                  <b
+                    class="relative capitalize sm:text-xs sm:text-center mq640:text-base"
+                    >privacy policy</b
+                  >
+                </a>
+              </div>
+            </div>
+            <div
+              class="self-stretch overflow-hidden flex flex-col items-center justify-center pt-[50px] px-0 pb-0 text-5xl text-goldenrod-100"
+            >
+              <div
+                class="self-stretch overflow-hidden flex flex-row flex-wrap items-center justify-between sm:flex-col sm:gap-[30px] mq640:flex-col mq640:gap-[30px]"
+              >
+                <div
+                  class="flex-1 flex flex-col items-start justify-center gap-[10px] sm:items-center sm:justify-center sm:flex-[unset] sm:self-stretch mq640:self-stretch mq640:w-auto mq640:items-center mq640:justify-center mq640:flex-[unset]"
+                >
+                  <h3
+                    class="m-0 relative text-inherit capitalize font-bold font-inherit md:text-xl"
+                  >
+                    need help?
+                  </h3>
+                  <div
+                    class="flex flex-row items-center justify-start gap-[15px] text-xl text-aliceblue font-dm-sans"
+                  >
+                    <img
+                      class="relative w-5 h-5 overflow-hidden shrink-0 md:w-[15px] md:h-[15px]"
+                      alt=""
+                      src="public/assets/phone.svg"
+                    />
+
+                    <div
+                      class="flex flex-row items-center justify-start gap-[5px]"
+                    >
+                      <div class="relative uppercase md:text-sm">call us:</div>
+                      <div class="relative md:text-sm">+63 917 123 4567</div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col items-start justify-center gap-[10px] sm:self-stretch sm:w-auto sm:items-center sm:justify-center mq640:self-stretch mq640:w-auto mq640:items-center mq640:justify-center"
+                >
+                  <h3
+                    class="m-0 relative text-inherit capitalize font-bold font-inherit md:text-xl"
+                  >
+                    Email:
+                  </h3>
+                  <div
+                    class="flex flex-row items-center justify-center gap-[15px] text-xl text-aliceblue font-dm-sans"
+                  >
+                    <img
+                      class="relative w-[30px] h-[30px] overflow-hidden shrink-0 md:w-5 md:h-5"
+                      alt=""
+                      src="public/assets/email.svg"
+                    />
+
+                    <div class="relative md:text-sm">
+                      info@itodirectplus.com
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex-1 flex flex-col items-end justify-center gap-[10px] sm:items-center sm:justify-center sm:flex-[unset] sm:self-stretch mq640:self-stretch mq640:w-auto mq640:items-center mq640:justify-center mq640:flex-[unset]"
+                >
+                  <h3
+                    class="m-0 relative text-inherit capitalize font-bold font-inherit md:text-xl"
+                  >
+                    follow us
+                  </h3>
+                  <div
+                    class="self-stretch overflow-hidden flex flex-row items-end justify-end gap-[20px] sm:items-end sm:justify-center mq640:items-end mq640:justify-center"
+                  >
+                    <a href="#">
+                      <img
+                        class="relative w-5 h-5 object-cover md:w-[15px] md:h-[15px]"
+                        alt=""
+                        src="public/assets/facebook@2x.png"
+                      />
+                    </a>
+
+                    <a href="#">
+                      <img
+                        class="relative w-[27px] h-[23px] object-cover md:w-5 md:h-[17px]"
+                        alt=""
+                        src="public/assets/linkedin@2x.png"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <button
+          class="cursor-pointer [border:none] p-5 bg-[transparent] my-0 mx-[!important] absolute right-[0px] bottom-[0px] flex flex-col items-center justify-center z-[1]"
+        >
+          <div
+            id="backTopBtn"
+            class="rounded-81xl bg-tomato-100 shadow-[0px_4px_4px_rgba(0,_0,_0,_0.15)] w-[70px] h-[70px] overflow-hidden shrink-0 flex flex-col items-center justify-center p-[15px] box-border cursor-pointer lg:w-[60px] lg:h-[60px] md:w-[50px] md:h-[50px]"
+          >
+            <img
+              class="self-stretch flex-1 relative max-w-full overflow-hidden max-h-full"
+              alt=""
+              src="public/assets/chevronUp.svg"
+            />
+          </div>
+        </button>
+      </section>
+    </div>
+
+    <script src="public/scripts/menu.js"></script>
+  </body>
+</html>

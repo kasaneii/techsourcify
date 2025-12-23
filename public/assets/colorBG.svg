@@ -1,0 +1,28 @@
+<svg width="906" height="890" viewBox="0 0 906 890" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_f_629_753)">
+<path d="M333.648 722.197C425.147 722.197 499.312 648.968 499.312 558.624C499.312 468.298 425.147 395.068 333.648 395.068C242.166 395.068 168 468.298 168 558.624C168 648.968 242.166 722.197 333.648 722.197Z" fill="#EF6A77" fill-opacity="0.2"/>
+</g>
+<g filter="url(#filter1_f_629_753)">
+<path d="M553.685 702.118C655.813 702.118 738.594 620.46 738.594 519.719C738.594 418.997 655.813 337.339 553.685 337.339C451.577 337.339 368.795 418.997 368.795 519.719C368.795 620.46 451.577 702.118 553.685 702.118Z" fill="#093BCB" fill-opacity="0.2"/>
+</g>
+<g filter="url(#filter2_f_629_753)">
+<path d="M357.073 506.342C451.807 506.342 528.595 430.491 528.595 336.912C528.595 243.352 451.807 167.5 357.073 167.5C262.358 167.5 185.57 243.352 185.57 336.912C185.57 430.491 262.358 506.342 357.073 506.342Z" fill="#FCA311" fill-opacity="0.2"/>
+</g>
+<defs>
+<filter id="filter0_f_629_753" x="0.670456" y="227.739" width="665.972" height="661.788" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="83.6648" result="effect1_foregroundBlur_629_753"/>
+</filter>
+<filter id="filter1_f_629_753" x="201.466" y="170.01" width="704.457" height="699.437" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="83.6648" result="effect1_foregroundBlur_629_753"/>
+</filter>
+<filter id="filter2_f_629_753" x="18.24" y="0.170456" width="677.685" height="673.501" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="83.6648" result="effect1_foregroundBlur_629_753"/>
+</filter>
+</defs>
+</svg>
