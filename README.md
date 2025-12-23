@@ -5,7 +5,7 @@
 
 ## 📱 Project Preview
 <p align="center">
-  <img src="./assets/thumbnail.png" alt="Techsourcify Mockup" width="100%">
+  <img src="public/assets/thumbnail.png" alt="Techsourcify Mockup" width="100%">
 </p>
 
 ## 🚀 The Problem & Solution
